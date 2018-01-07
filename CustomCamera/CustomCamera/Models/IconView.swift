@@ -8,12 +8,25 @@
 
 import UIKit
 
-class IconView: UIImageView {
+protocol IConViewDelegate {
+    func didTapOnICon()
+}
 
+enum BrightStyle: Int {
+    case Light = 0
+    case Normal = 1
+    case Dark = 2
+}
+
+class IconView: UIImageView {
+    
   private var originalCenter: CGPoint?
   private var dragStart: CGPoint?
+    var delegate: IConViewDelegate?
+    var brightMode: BrightStyle = .Dark
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    delegate?.didTapOnICon()
     originalCenter = center
 //    dragStart = touches.first!.location(in: superview)
 //    let current = self.frame.origin

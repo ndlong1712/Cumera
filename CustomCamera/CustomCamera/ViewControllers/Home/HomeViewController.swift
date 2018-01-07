@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
     var previewLayer : AVCaptureVideoPreviewLayer?
     var captureDevice : AVCaptureDevice?
     
-    var imgViewIcon: UIImageView?
+    var imgViewIcon: IconView?
     var progress: KDCircularProgress!
     
     var originalCenter: CGPoint?
@@ -190,8 +190,10 @@ class HomeViewController: UIViewController {
         let typeCard = UserDefaultHelper.getCardType()
         let frontImg = Utilities.showCard(cardName: CardName(rawValue: nameCard)!, cardType: CardType(rawValue: typeCard)!)
         imgViewIcon = IconView(image: frontImg)
+        imgViewIcon?.delegate = self
         imgViewIcon?.frame = CGRect(x: 150, y: 150, width: 70, height: 100)
         imgViewIcon?.isUserInteractionEnabled = true
+
         self.view.addSubview(imgViewIcon!)
     }
     
@@ -255,9 +257,31 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func changeBrightModeIcon(currentMode: BrightStyle, iconView: IconView) {
+        switch currentMode {
+        case .Dark:
+            iconView.brightMode = .Normal
+            break
+        case .Normal:
+            iconView.brightMode = .Light
+            break
+        case .Light:
+            iconView.brightMode = .Dark
+            break
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension HomeViewController: IConViewDelegate {
+    func didTapOnICon() {
+        changeBrightModeIcon(currentMode: (self.imgViewIcon?.brightMode)!, iconView: self.imgViewIcon!)
+        print("Current mode: \(String(describing: self.imgViewIcon?.brightMode))")
+        //change Image
     }
 }
 
