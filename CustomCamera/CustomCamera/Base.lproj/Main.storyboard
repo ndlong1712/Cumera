@@ -366,6 +366,8 @@
                         <outlet property="btnSpade" destination="7dM-fK-JtO" id="zhE-q7-QLn"/>
                         <outlet property="collectionView" destination="tAd-3R-fRD" id="EOJ-WS-swi"/>
                         <outlet property="imgCard" destination="Uap-AS-5gD" id="fhd-1a-PL2"/>
+                        <outlet property="lbSecond" destination="B5c-GF-8Wv" id="dSq-px-pvl"/>
+                        <outlet property="lbTime" destination="LmI-z8-Ryn" id="JPc-nk-pUy"/>
                         <outlet property="lbTimer" destination="B5c-GF-8Wv" id="3t5-h5-Gx4"/>
                         <outlet property="sliderTimer" destination="JUi-X3-ezB" id="iQf-Bv-ziJ"/>
                         <outlet property="switchCapture" destination="SRX-Ar-OZj" id="151-VS-VVL"/>

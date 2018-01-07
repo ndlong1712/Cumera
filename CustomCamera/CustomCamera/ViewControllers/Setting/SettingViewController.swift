@@ -14,6 +14,8 @@ let second = "giây"
 class SettingViewController: UIViewController {
     static let ClassName = "SettingViewController"
 
+    @IBOutlet weak var lbSecond: UILabel!
+    @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var imgCard: UIImageView!
     @IBOutlet weak var lbTimer: UILabel!
     @IBOutlet weak var btnSpade: UIButton!
@@ -29,6 +31,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupViewTimerMode(isOn: switchCapture.isOn)
     }
     
     func setupView() {
@@ -144,6 +147,13 @@ class SettingViewController: UIViewController {
     
     @IBAction func didTapSwitch(_ sender: Any) {
         self.setting?.isCaptureTimer = switchCapture.isOn
+        setupViewTimerMode(isOn: switchCapture.isOn)
+    }
+    
+    func setupViewTimerMode(isOn: Bool) {
+        lbTime.isHidden = !isOn
+        lbSecond.isHidden = !isOn
+        sliderTimer.isHidden = !isOn
     }
     
 }
