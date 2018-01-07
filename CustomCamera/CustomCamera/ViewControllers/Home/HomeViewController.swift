@@ -42,13 +42,7 @@ class HomeViewController: UIViewController {
         setupCamera()
         setupProgressBar()
 //        setupLastestImage()
-//        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
-        NotificationCenter.default.addObserver(
-            self,
-            selector:  #selector(deviceDidRotate),
-            name: .UIApplicationDidChangeStatusBarOrientation,
-            object: nil
-        )
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
     }
     
@@ -65,7 +59,6 @@ class HomeViewController: UIViewController {
 //    }
     
     func deviceDidRotate() {
-        print("aloooo")
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
             print("Landscape")
             rotateIcon(from: 0, to: Float.pi/2)
