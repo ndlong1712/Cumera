@@ -9,30 +9,38 @@
 import UIKit
 import AVFoundation
 import Foundation
+import KDCircularProgress
+
+let msgCaptureSuccess = "Hình đã được lưu vào Photo Library!"
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var viewBot: UIView!
     @IBOutlet weak var didTapAddIcon: UIButton!
     @IBOutlet weak var viewCamera: UIView!
     @IBOutlet weak var btnCapture: UIButton!
     @IBOutlet weak var btnSetting: UIButton!
+    @IBOutlet weak var btnInfo: UIButton!
+    @IBOutlet weak var imgMini: UIImageView!
     
     var captureSession = AVCaptureSession()
-    @IBOutlet weak var imgMini: UIImageView!
     let stillImageOutput = AVCaptureStillImageOutput()
     var previewLayer : AVCaptureVideoPreviewLayer?
-    
     var captureDevice : AVCaptureDevice?
-    var imgViewIcon: UIImageView?
     
-    private var originalCenter: CGPoint?
+    var imgViewIcon: UIImageView?
+    var progress: KDCircularProgress!
+    
+    var originalCenter: CGPoint?
+    var dragStart: CGPoint?
     var center = CGPoint(x: 150, y: 150)
-    private var dragStart: CGPoint?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLastestImage()
         setupCamera()
+        setupProgressBar()
         
     }
     
@@ -40,6 +48,29 @@ class HomeViewController: UIViewController {
         addIconToCamera()
     }
     
+    func setupProgressBar() {
+        let widthProgres = self.viewBot.frame.height * 0.7
+        let x = self.viewBot.frame.width/2 - widthProgres/2
+        let y = self.viewBot.frame.height/2 - widthProgres/2
+        progress = KDCircularProgress(frame: CGRect(x: x, y: y, width: widthProgres, height: widthProgres))
+        progress.startAngle = -90
+        progress.progressThickness = 0.2
+        progress.trackThickness = 0.3
+        progress.clockwise = true
+        progress.gradientRotateSpeed = 2
+        progress.roundedCorners = false
+        progress.glowMode = .forward
+        progress.glowAmount = 0.9
+        progress.trackColor = UIColor.white
+        progress.layer.borderWidth = 0.5
+        progress.layer.borderColor = UIColor.lightGray.cgColor
+        progress.layer.cornerRadius = progress.frame.width/2
+        progress.addTapGesture(tapNumber: 1, target: self, action: #selector(actionCameraCapture))
+        progress.set(colors: UIColor.blue, UIColor.cyan, UIColor.blue)
+        progress.progressInsideFillColor = UIColor.red
+        viewBot.addSubview(progress)
+    }
+  
     func setupCamera() {
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
         if let devices = AVCaptureDevice.devices() as? [AVCaptureDevice] {
@@ -48,11 +79,12 @@ class HomeViewController: UIViewController {
                 // Make sure this particular device supports video
                 if (device.hasMediaType(AVMediaTypeVideo)) {
                     // Finally check the position and confirm we've got the back camera
-                    if(device.position == AVCaptureDevicePosition.front) {
+                    if(device.position == AVCaptureDevicePosition.back) {
                         captureDevice = device
                         if captureDevice != nil {
                             print("Capture device found")
                             beginSession()
+//                            zoomInCamera(value: 1)
                         }
                     }
                 }
@@ -66,8 +98,23 @@ class HomeViewController: UIViewController {
         self.imgMini.image = lastestPhoto
     }
     
-    @IBAction func actionCameraCapture(_ sender: AnyObject) {
-        saveToCamera()
+    func actionCameraCapture() {
+        let statusCaptureTimer = UserDefaultHelper.getStatusIsCaptureTimer()
+        
+        if statusCaptureTimer {
+            let timer = UserDefaultHelper.getCaptureTimer()
+            progress.animate(fromAngle: 0, toAngle: 360, duration: TimeInterval(timer)) { completed in
+                if completed {
+                    print("animation stopped, completed")
+                    self.saveToCamera()
+                    self.progress.progress = 0
+                } else { // progress fail
+                    self.progress.progress = 0
+                }
+            }
+        } else {
+            saveToCamera()
+        }
     }
     
     @IBAction func didTapSetting(_ sender: Any) {
@@ -76,7 +123,27 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func didTapAddIcon(_ sender: Any) {
-        
+        Utilities.showAlertSavedImage(message: "Info...!", viewController: self)
+    }
+    
+    func zoomInCamera(value: CGFloat)  {
+        do {
+            try captureDevice?.lockForConfiguration()
+            captureDevice?.videoZoomFactor += value
+            captureDevice?.unlockForConfiguration()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func zoomOutCamera(value: CGFloat) {
+        do {
+            try captureDevice?.lockForConfiguration()
+            captureDevice?.videoZoomFactor -= value
+            captureDevice?.unlockForConfiguration()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     func addIconToCamera() {
@@ -87,7 +154,7 @@ class HomeViewController: UIViewController {
         imgViewIcon = IconView(image: frontImg)
         imgViewIcon?.frame = CGRect(x: 150, y: 150, width: 70, height: 100)
         imgViewIcon?.isUserInteractionEnabled = true
-        self.viewCamera.addSubview(imgViewIcon!)
+        self.view.addSubview(imgViewIcon!)
     }
     
     func beginSession() {
@@ -110,8 +177,10 @@ class HomeViewController: UIViewController {
             return
         }
         
-        self.viewCamera.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.view.layer.frame
+        
+        previewLayer.frame = self.viewCamera.frame
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        self.view.layer.addSublayer(previewLayer)
         captureSession.startRunning()
         self.view.addSubview(btnSetting)
         
@@ -120,24 +189,26 @@ class HomeViewController: UIViewController {
     func saveToCamera() {
         
         if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
-            
+//            zoomOutCamera(value: 1)
+            stillImageOutput.isHighResolutionStillImageOutputEnabled = true
             stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (CMSampleBuffer, Error) in
                 if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer) {
                     
                     if let cameraImage = UIImage(data: imageData) {
                         let bgimgview = UIImageView(image: cameraImage) // Create the view holding the image
                         
-                        let heightInPoints = cameraImage.size.height
-                        let widthInPoints = cameraImage.size.width
-                        bgimgview.frame = CGRect(x: 0, y: 0, width: widthInPoints, height: heightInPoints)
+                        let screenSize = UIScreen.main.bounds
+                        bgimgview.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
                         
                         if let icon = self.imgViewIcon {
-                            bgimgview.addSubview(icon) // Add the front image on top of the background
+                            let copiedView: UIImageView = icon.copyView()
+                            bgimgview.addSubview(copiedView) // Add the front image on top of the background
                             let imgOutPut = UIImage(view: bgimgview)
                             UIImageWriteToSavedPhotosAlbum(imgOutPut, nil, nil, nil)
+                            Utilities.showAlertSavedImage(message: msgCaptureSuccess, viewController: self)
                             self.imgMini.image = imgOutPut
+//                            self.zoomInCamera(value: 1)
                         }
-                        
                         
                     }
                 }

@@ -21,4 +21,13 @@ class Utilities: NSObject {
         let imgCard = UIImage(named: imageName)
         return imgCard!
     }
+  
+  static func showAlertSavedImage(message: String, viewController: UIViewController) {
+    let alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
+        
+    })
+    alertView.addAction(action)
+    viewController.present(alertView, animated: true, completion: nil)
+  }
 }
