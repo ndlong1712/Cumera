@@ -34,6 +34,7 @@ class HomeViewController: UIViewController {
     var originalCenter: CGPoint?
     var dragStart: CGPoint?
     var center = CGPoint(x: 150, y: 150)
+    var isCapturing = false
 
     
     override func viewDidLoad() {
@@ -41,11 +42,44 @@ class HomeViewController: UIViewController {
         setupLastestImage()
         setupCamera()
         setupProgressBar()
+        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         addIconToCamera()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+        } else {
+            print("Portrait")
+        }
+    }
+    
+    func rotated() {
+        
+        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            print("Landscape")
+            rotateIcon(from: 0, to: Float.pi/2)
+        }
+        
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            print("Portraint")
+             rotateIcon(from: Float.pi/2, to: 0)
+        }
+        
+    }
+    
+    func rotateIcon(from: Float, to: Float)  {
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.fromValue = from
+        rotationAnimation.toValue = to
+        rotationAnimation.duration = 0.5
+        rotationAnimation.isRemovedOnCompletion = false
+        rotationAnimation.fillMode = kCAFillModeForwards
+        self.imgViewIcon?.layer.add(rotationAnimation, forKey: nil)
     }
     
     func setupProgressBar() {
@@ -99,22 +133,26 @@ class HomeViewController: UIViewController {
     }
     
     func actionCameraCapture() {
-        let statusCaptureTimer = UserDefaultHelper.getStatusIsCaptureTimer()
-        
-        if statusCaptureTimer {
-            let timer = UserDefaultHelper.getCaptureTimer()
-            progress.animate(fromAngle: 0, toAngle: 360, duration: TimeInterval(timer)) { completed in
-                if completed {
-                    print("animation stopped, completed")
-                    self.saveToCamera()
-                    self.progress.progress = 0
-                } else { // progress fail
-                    self.progress.progress = 0
+        if !isCapturing { //prevent multi touch
+            isCapturing = true
+            let statusCaptureTimer = UserDefaultHelper.getStatusIsCaptureTimer()
+            if statusCaptureTimer {
+                let timer = UserDefaultHelper.getCaptureTimer()
+                progress.animate(fromAngle: 0, toAngle: 360, duration: TimeInterval(timer)) { completed in
+                    if completed {
+                        print("animation stopped, completed")
+                        self.saveToCamera()
+                        self.progress.progress = 0
+                    } else { // progress fail
+                        self.progress.progress = 0
+                        self.isCapturing = false
+                    }
                 }
+            } else {
+                saveToCamera()
             }
-        } else {
-            saveToCamera()
         }
+        
     }
     
     @IBAction func didTapSetting(_ sender: Any) {
@@ -207,6 +245,7 @@ class HomeViewController: UIViewController {
                             UIImageWriteToSavedPhotosAlbum(imgOutPut, nil, nil, nil)
                             Utilities.showAlertSavedImage(message: msgCaptureSuccess, viewController: self)
                             self.imgMini.image = imgOutPut
+                            self.isCapturing = false
 //                            self.zoomInCamera(value: 1)
                         }
                         

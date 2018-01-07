@@ -16,9 +16,9 @@ class IconView: UIImageView {
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     originalCenter = center
 //    dragStart = touches.first!.location(in: superview)
-    let current = self.frame.origin
-    dragStart = CGPoint(x: current.x + 6, y: current.y + 6)
-    
+//    let current = self.frame.origin
+//    dragStart = CGPoint(x: current.x + 6, y: current.y + 6)
+    dragStart = center
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
