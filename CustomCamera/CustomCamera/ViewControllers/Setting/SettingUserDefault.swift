@@ -76,7 +76,7 @@ class UserDefaultHelper: NSObject {
         let userDefaults = UserDefaults.standard
         let timer = userDefaults.value(forKey: captureTimer)
         if timer == nil {
-            return 0
+            return 1
         }
         return timer as! Int
     }

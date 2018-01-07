@@ -59,7 +59,7 @@
                                             <action selector="actionCameraCapture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lFY-sy-mrx"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="b_A_of_clubs" translatesAutoresizingMaskIntoConstraints="NO" id="use-nt-PGe">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="use-nt-PGe">
                                         <rect key="frame" x="255.5" y="12" width="54.5" height="55.5"/>
                                     </imageView>
                                 </subviews>
@@ -379,8 +379,8 @@
     <resources>
         <image name="ImgCameraCaptureBtn" width="102" height="102"/>
         <image name="ace_of_spades2" width="500" height="726"/>
-        <image name="b_A_of_clubs" width="500" height="726"/>
         <image name="ic_action_info" width="48" height="48"/>
+        <image name="noImage" width="800" height="800"/>
         <image name="settingIcon" width="50" height="50"/>
     </resources>
 </document>

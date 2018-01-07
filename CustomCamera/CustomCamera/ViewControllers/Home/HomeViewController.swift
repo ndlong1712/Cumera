@@ -39,10 +39,16 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLastestImage()
         setupCamera()
         setupProgressBar()
-        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+//        setupLastestImage()
+//        NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector:  #selector(deviceDidRotate),
+            name: .UIApplicationDidChangeStatusBarOrientation,
+            object: nil
+        )
         
     }
     
@@ -50,16 +56,16 @@ class HomeViewController: UIViewController {
         addIconToCamera()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-        } else {
-            print("Portrait")
-        }
-    }
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        if UIDevice.current.orientation.isLandscape {
+//            print("Landscape")
+//        } else {
+//            print("Portrait")
+//        }
+//    }
     
-    func rotated() {
-        
+    func deviceDidRotate() {
+        print("aloooo")
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
             print("Landscape")
             rotateIcon(from: 0, to: Float.pi/2)
