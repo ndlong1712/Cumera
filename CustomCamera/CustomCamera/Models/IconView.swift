@@ -22,6 +22,7 @@ class IconView: UIImageView {
     
   private var originalCenter: CGPoint?
   private var dragStart: CGPoint?
+    var viewAlpha: UIView?
     var delegate: IConViewDelegate?
     var brightMode: BrightStyle? {
         didSet {
@@ -30,20 +31,23 @@ class IconView: UIImageView {
     }
     
     func setUpImageView() {
-//        self.backgroundColor = UIColor.black
-        brightMode = .Dark
+        let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        viewAlpha = UIView(frame: frame)
+        viewAlpha?.backgroundColor = UIColor.black
+        self.addSubview(viewAlpha!)
+         brightMode = .Dark
     }
     
     func setBrightColor(mode: BrightStyle) {
         switch mode {
         case .Dark:
-            self.layer.opacity = 0.6
+            self.viewAlpha?.alpha = 0.4
             break
         case .Normal:
-            self.layer.opacity = 0.8
+            self.viewAlpha?.alpha = 0.2
             break
         case .Light:
-            self.layer.opacity = 1
+            self.viewAlpha?.alpha = 0
             break
         }
     }

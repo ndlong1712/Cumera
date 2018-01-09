@@ -193,9 +193,9 @@ class HomeViewController: UIViewController {
         let typeCard = UserDefaultHelper.getCardType()
         let frontImg = Utilities.showCard(cardName: CardName(rawValue: nameCard)!, cardType: CardType(rawValue: typeCard)!)
         imgViewIcon = IconView(image: frontImg)
-        imgViewIcon?.setUpImageView()
         imgViewIcon?.delegate = self
         imgViewIcon?.frame = CGRect(x: 150, y: 150, width: 70, height: 100)
+        imgViewIcon?.setUpImageView()
         imgViewIcon?.isUserInteractionEnabled = true
 
         self.view.addSubview(imgViewIcon!)
