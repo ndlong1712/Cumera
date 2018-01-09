@@ -163,6 +163,10 @@ class HomeViewController: UIViewController {
         Utilities.showAlertSavedImage(message: "Info...!", viewController: self)
     }
     
+    @IBAction func didTapChangeIconMode(_ sender: Any) {
+        changeBrightModeIcon(currentMode: (self.imgViewIcon?.brightMode)!, iconView: self.imgViewIcon!)
+    }
+    
     func zoomInCamera(value: CGFloat)  {
         do {
             try captureDevice?.lockForConfiguration()
@@ -189,6 +193,7 @@ class HomeViewController: UIViewController {
         let typeCard = UserDefaultHelper.getCardType()
         let frontImg = Utilities.showCard(cardName: CardName(rawValue: nameCard)!, cardType: CardType(rawValue: typeCard)!)
         imgViewIcon = IconView(image: frontImg)
+        imgViewIcon?.setUpImageView()
         imgViewIcon?.delegate = self
         imgViewIcon?.frame = CGRect(x: 150, y: 150, width: 70, height: 100)
         imgViewIcon?.isUserInteractionEnabled = true
@@ -278,7 +283,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: IConViewDelegate {
     func didTapOnICon() {
-        changeBrightModeIcon(currentMode: (self.imgViewIcon?.brightMode)!, iconView: self.imgViewIcon!)
+        
         print("Current mode: \(String(describing: self.imgViewIcon?.brightMode))")
         //change Image
     }

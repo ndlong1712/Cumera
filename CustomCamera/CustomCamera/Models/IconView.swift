@@ -23,10 +23,33 @@ class IconView: UIImageView {
   private var originalCenter: CGPoint?
   private var dragStart: CGPoint?
     var delegate: IConViewDelegate?
-    var brightMode: BrightStyle = .Dark
+    var brightMode: BrightStyle? {
+        didSet {
+            setBrightColor(mode: brightMode!)
+        }
+    }
+    
+    func setUpImageView() {
+//        self.backgroundColor = UIColor.black
+        brightMode = .Dark
+    }
+    
+    func setBrightColor(mode: BrightStyle) {
+        switch mode {
+        case .Dark:
+            self.layer.opacity = 0.6
+            break
+        case .Normal:
+            self.layer.opacity = 0.8
+            break
+        case .Light:
+            self.layer.opacity = 1
+            break
+        }
+    }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    delegate?.didTapOnICon()
+//    delegate?.didTapOnICon()
     originalCenter = center
 //    dragStart = touches.first!.location(in: superview)
 //    let current = self.frame.origin
