@@ -159,12 +159,14 @@ class HomeViewController: UIViewController {
         self.present(settingViewController, animated: true, completion: nil)
     }
     
+    //change icon mode
     @IBAction func didTapAddIcon(_ sender: Any) {
-        Utilities.showAlertSavedImage(message: "Info...!", viewController: self)
+//        Utilities.showAlertSavedImage(message: "Info...!", viewController: self)
+        changeBrightModeIcon(currentMode: (self.imgViewIcon?.brightMode)!, iconView: self.imgViewIcon!)
     }
     
     @IBAction func didTapChangeIconMode(_ sender: Any) {
-        changeBrightModeIcon(currentMode: (self.imgViewIcon?.brightMode)!, iconView: self.imgViewIcon!)
+//        changeBrightModeIcon(currentMode: (self.imgViewIcon?.brightMode)!, iconView: self.imgViewIcon!)
     }
     
     func zoomInCamera(value: CGFloat)  {

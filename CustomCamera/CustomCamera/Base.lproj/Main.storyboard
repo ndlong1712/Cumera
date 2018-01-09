@@ -42,9 +42,8 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Vzb-SJ-jgx" secondAttribute="height" multiplier="1:1" id="z4s-l1-bMV"/>
                                         </constraints>
-                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="ic_action_info"/>
+                                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="switch"/>
                                         <connections>
                                             <action selector="didTapAddIcon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ixc-d2-P8Z"/>
                                         </connections>
@@ -92,6 +91,7 @@
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="FHk-bq-Our"/>
+                                        <exclude reference="GqS-Yw-yHa"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -393,7 +393,6 @@
     <resources>
         <image name="ImgCameraCaptureBtn" width="102" height="102"/>
         <image name="ace_of_spades2" width="500" height="726"/>
-        <image name="ic_action_info" width="48" height="48"/>
         <image name="noImage" width="800" height="800"/>
         <image name="settingIcon" width="50" height="50"/>
         <image name="switch" width="225" height="225"/>
