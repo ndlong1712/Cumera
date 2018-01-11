@@ -31,23 +31,26 @@ class IconView: UIImageView {
     }
     
     func setUpImageView() {
-        let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        viewAlpha = UIView(frame: frame)
-        viewAlpha?.backgroundColor = UIColor.black
-        self.addSubview(viewAlpha!)
+//        let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+//        viewAlpha = UIView(frame: frame)
+//        viewAlpha?.backgroundColor = UIColor.black
+//        self.addSubview(viewAlpha!)
          brightMode = .Dark
     }
     
     func setBrightColor(mode: BrightStyle) {
         switch mode {
         case .Dark:
-            self.viewAlpha?.alpha = 0.4
+//            self.viewAlpha?.alpha = 0.4
+            self.layer.opacity = 0.7
             break
         case .Normal:
-            self.viewAlpha?.alpha = 0.2
+            self.layer.opacity = 0.85
+//            self.viewAlpha?.alpha = 0.2
             break
         case .Light:
-            self.viewAlpha?.alpha = 0
+            self.layer.opacity = 1
+//            self.viewAlpha?.alpha = 0
             break
         }
     }
