@@ -20,8 +20,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var viewCamera: UIView!
     @IBOutlet weak var btnCapture: UIButton!
     @IBOutlet weak var btnSetting: UIButton!
-    @IBOutlet weak var btnInfo: UIButton!
     @IBOutlet weak var imgMini: UIImageView!
+    @IBOutlet weak var btnAds: UIButton!
+    @IBOutlet weak var btnInfo: UIButton!
     
     var captureSession = AVCaptureSession()
     let stillImageOutput = AVCaptureStillImageOutput()
@@ -49,14 +50,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         addIconToCamera()
     }
-    
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        if UIDevice.current.orientation.isLandscape {
-//            print("Landscape")
-//        } else {
-//            print("Portrait")
-//        }
-//    }
     
     func deviceDidRotate() {
         if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
@@ -159,9 +152,20 @@ class HomeViewController: UIViewController {
         self.present(settingViewController, animated: true, completion: nil)
     }
     
+    @IBAction func didTapIntrodution(_ sender: Any) {
+        Utilities.showAlertSavedImage(message: "Introduce...!", viewController: self) {
+            Utilities.openUrl(url: "https://www.youtube.com/watch?v=g20t_K9dlhU")
+        }
+    }
+    
+    @IBAction func didTapInfo(_ sender: Any) {
+        Utilities.showAlertSavedImage(message: "Info...!", viewController: self) {
+            print("ok")
+        }
+    }
+    
     //change icon mode
     @IBAction func didTapAddIcon(_ sender: Any) {
-//        Utilities.showAlertSavedImage(message: "Info...!", viewController: self)
         changeBrightModeIcon(currentMode: (self.imgViewIcon?.brightMode)!, iconView: self.imgViewIcon!)
     }
     
@@ -229,6 +233,8 @@ class HomeViewController: UIViewController {
         self.view.layer.addSublayer(previewLayer)
         captureSession.startRunning()
         self.view.addSubview(btnSetting)
+        self.view.addSubview(btnAds)
+        self.view.addSubview(btnInfo)
         
     }
     
@@ -251,7 +257,9 @@ class HomeViewController: UIViewController {
                             bgimgview.addSubview(copiedView) // Add the front image on top of the background
                             let imgOutPut = UIImage(view: bgimgview)
                             UIImageWriteToSavedPhotosAlbum(imgOutPut, nil, nil, nil)
-                            Utilities.showAlertSavedImage(message: msgCaptureSuccess, viewController: self)
+                            Utilities.showAlertSavedImage(message: msgCaptureSuccess, viewController: self, okAction: {
+                                
+                            })
                             self.imgMini.image = imgOutPut
                             self.isCapturing = false
 //                            self.zoomInCamera(value: 1)

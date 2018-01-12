@@ -106,25 +106,50 @@
                                     <action selector="didTapSetting:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fcL-5l-7pE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rO-y5-fl4" userLabel="Button Ads">
+                                <rect key="frame" x="267" y="73" width="48" height="48"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="settingIcon"/>
+                                <connections>
+                                    <action selector="didTapIntrodution:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Un9-Ql-Wa1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59q-VV-r3v" userLabel="Button Info">
+                                <rect key="frame" x="267" y="121" width="48" height="48"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="settingIcon"/>
+                                <connections>
+                                    <action selector="didTapInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aHb-Rp-E0q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MIO-3f-ULZ" firstAttribute="top" secondItem="VYe-jS-djb" secondAttribute="bottom" id="2H1-1Z-FyY"/>
+                            <constraint firstItem="59q-VV-r3v" firstAttribute="height" secondItem="4rO-y5-fl4" secondAttribute="height" id="7Nc-vP-hxD"/>
+                            <constraint firstItem="59q-VV-r3v" firstAttribute="centerX" secondItem="4rO-y5-fl4" secondAttribute="centerX" id="ApF-DD-9ak"/>
+                            <constraint firstItem="59q-VV-r3v" firstAttribute="top" secondItem="4rO-y5-fl4" secondAttribute="bottom" id="Jau-wy-lXR"/>
+                            <constraint firstItem="4rO-y5-fl4" firstAttribute="width" secondItem="kU3-jA-FHX" secondAttribute="width" id="Jjj-dL-ODl"/>
                             <constraint firstItem="VYe-jS-djb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="SDU-56-qxW"/>
                             <constraint firstItem="MIO-3f-ULZ" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.14" id="THK-pB-IYK"/>
+                            <constraint firstItem="4rO-y5-fl4" firstAttribute="height" secondItem="kU3-jA-FHX" secondAttribute="height" id="WdY-rp-cqN"/>
+                            <constraint firstItem="59q-VV-r3v" firstAttribute="width" secondItem="4rO-y5-fl4" secondAttribute="width" id="WtJ-wg-34f"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MIO-3f-ULZ" secondAttribute="bottom" id="a2c-Ae-1zk"/>
                             <constraint firstItem="MIO-3f-ULZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aNe-Eo-p43"/>
                             <constraint firstAttribute="trailing" secondItem="MIO-3f-ULZ" secondAttribute="trailing" id="ejN-R4-cuU"/>
                             <constraint firstAttribute="trailing" secondItem="kU3-jA-FHX" secondAttribute="trailing" constant="5" id="hQG-bs-B7b"/>
+                            <constraint firstItem="4rO-y5-fl4" firstAttribute="top" secondItem="kU3-jA-FHX" secondAttribute="bottom" id="oJE-mD-4Xj"/>
                             <constraint firstAttribute="trailing" secondItem="VYe-jS-djb" secondAttribute="trailing" id="pkH-Os-Krx"/>
                             <constraint firstItem="kU3-jA-FHX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="rnN-24-jWP"/>
+                            <constraint firstItem="4rO-y5-fl4" firstAttribute="centerX" secondItem="kU3-jA-FHX" secondAttribute="centerX" id="sHc-Hf-buF"/>
                             <constraint firstItem="VYe-jS-djb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tgv-6K-srz"/>
                             <constraint firstItem="kU3-jA-FHX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.15" id="vKv-vr-A0b"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnAds" destination="4rO-y5-fl4" id="Ub4-U0-Ceb"/>
                         <outlet property="btnCapture" destination="FHk-bq-Our" id="cd0-Od-h5E"/>
-                        <outlet property="btnInfo" destination="Vzb-SJ-jgx" id="PKE-8a-QN5"/>
+                        <outlet property="btnInfo" destination="59q-VV-r3v" id="DNf-FS-PEs"/>
                         <outlet property="btnSetting" destination="kU3-jA-FHX" id="0da-rm-UMP"/>
                         <outlet property="didTapAddIcon" destination="Vzb-SJ-jgx" id="jSf-rY-o8a"/>
                         <outlet property="imgMini" destination="use-nt-PGe" id="z1y-ay-4tr"/>

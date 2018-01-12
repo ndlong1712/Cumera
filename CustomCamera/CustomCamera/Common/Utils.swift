@@ -22,12 +22,22 @@ class Utilities: NSObject {
         return imgCard!
     }
   
-  static func showAlertSavedImage(message: String, viewController: UIViewController) {
+    static func showAlertSavedImage(message: String, viewController: UIViewController, okAction: @escaping () -> Void) {
     let alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
     let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
-        
+        okAction()
     })
     alertView.addAction(action)
     viewController.present(alertView, animated: true, completion: nil)
   }
+    
+   static func openUrl(url: String) {
+        let url = NSURL(string:url)!
+        
+//        if UIApplication.shared.canOpenURL(url as URL){
+//            UIApplication.shared.openURL(url as URL)
+//        } else {
+            UIApplication.shared.openURL(url as URL)
+//        }
+    }
 }
