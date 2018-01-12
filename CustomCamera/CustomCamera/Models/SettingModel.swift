@@ -13,5 +13,6 @@ struct SettingModel {
     var cardType: CardType
     var isCaptureTimer: Bool
     var timer: Int
+    var language: Language
 
 }

@@ -20,6 +20,8 @@
 		9ABD98A52000A722004692DA /* SettingUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD98A42000A722004692DA /* SettingUserDefault.swift */; };
 		9ABD98A72000AAD6004692DA /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD98A62000AAD6004692DA /* SettingModel.swift */; };
 		9ABD98A92000D2A5004692DA /* ClassLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD98A82000D2A5004692DA /* ClassLibrary.swift */; };
+		9AEB562320086F6600FD7F54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AEB562520086F6600FD7F54 /* Localizable.strings */; };
+		9AEB562C200874DD00FD7F54 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB562B200874DD00FD7F54 /* StringExtension.swift */; };
 		BC6E1A9D2C8429FD993F8CC5 /* Pods_CustomCameraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC01F006AC451780E77DEB9C /* Pods_CustomCameraUITests.framework */; };
 		C779EB451DA625B800BFF796 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C779EB441DA625B800BFF796 /* AppDelegate.swift */; };
 		C779EB471DA625B800BFF796 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C779EB461DA625B800BFF796 /* HomeViewController.swift */; };
@@ -64,6 +66,12 @@
 		9ABD98A42000A722004692DA /* SettingUserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserDefault.swift; sourceTree = "<group>"; };
 		9ABD98A62000AAD6004692DA /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		9ABD98A82000D2A5004692DA /* ClassLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassLibrary.swift; sourceTree = "<group>"; };
+		9AEB562420086F6600FD7F54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9AEB562620086F9200FD7F54 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
+		9AEB562720086F9200FD7F54 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		9AEB562820086F9300FD7F54 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9AEB562A20086FB400FD7F54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		9AEB562B200874DD00FD7F54 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		ABEF3DA9A172CF59BD7AA224 /* Pods-CustomCameraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCameraTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCameraTests/Pods-CustomCameraTests.release.xcconfig"; sourceTree = "<group>"; };
 		BAC60665F0F33504DF549721 /* Pods-CustomCameraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCameraUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCameraUITests/Pods-CustomCameraUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C779EB411DA625B800BFF796 /* CustomCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +158,7 @@
 				9ABD989320006296004692DA /* CGPointExtension.swift */,
 				9ABD98A22000A0F9004692DA /* UIColorExtension.swift */,
 				9A5600A220011FF9004A8B29 /* UIViewExtension.swift */,
+				9AEB562B200874DD00FD7F54 /* StringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -230,6 +239,7 @@
 				C779EB4B1DA625B800BFF796 /* Assets.xcassets */,
 				C779EB4D1DA625B800BFF796 /* LaunchScreen.storyboard */,
 				C779EB501DA625B800BFF796 /* Info.plist */,
+				9AEB562520086F6600FD7F54 /* Localizable.strings */,
 			);
 			path = CustomCamera;
 			sourceTree = "<group>";
@@ -366,6 +376,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = C779EB381DA625B800BFF796;
 			productRefGroup = C779EB421DA625B800BFF796 /* Products */;
@@ -385,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C779EB4F1DA625B800BFF796 /* LaunchScreen.storyboard in Resources */,
+				9AEB562320086F6600FD7F54 /* Localizable.strings in Resources */,
 				C779EB4C1DA625B800BFF796 /* Assets.xcassets in Resources */,
 				C779EB4A1DA625B800BFF796 /* Main.storyboard in Resources */,
 			);
@@ -563,6 +575,7 @@
 			files = (
 				9ABD989F20007B99004692DA /* CardCollectionViewCell.swift in Sources */,
 				C779EB471DA625B800BFF796 /* HomeViewController.swift in Sources */,
+				9AEB562C200874DD00FD7F54 /* StringExtension.swift in Sources */,
 				9ABD98A72000AAD6004692DA /* SettingModel.swift in Sources */,
 				9ABD98A12000857A004692DA /* CardModel.swift in Sources */,
 				9A5600A320011FF9004A8B29 /* UIViewExtension.swift in Sources */,
@@ -610,10 +623,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9AEB562520086F6600FD7F54 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AEB562420086F6600FD7F54 /* en */,
+				9AEB562820086F9300FD7F54 /* vi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		C779EB481DA625B800BFF796 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C779EB491DA625B800BFF796 /* Base */,
+				9AEB562620086F9200FD7F54 /* vi */,
+				9AEB562A20086FB400FD7F54 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -622,6 +646,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C779EB4E1DA625B800BFF796 /* Base */,
+				9AEB562720086F9200FD7F54 /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -633,6 +658,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -682,6 +708,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

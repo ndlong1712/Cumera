@@ -1,21 +1,21 @@
 
 /* Class = "UILabel"; text = "Chụp hẹn giờ"; ObjectID = "0yN-kn-dGe"; */
-"0yN-kn-dGe.text" = "Chụp hẹn giờ";
+"0yN-kn-dGe.text" = "Delay capture";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "1Xe-kf-P3y"; */
 "1Xe-kf-P3y.normalTitle" = "Button";
 
 /* Class = "UIButton"; normalTitle = "Chuồn"; ObjectID = "4so-FS-EJ1"; */
-"4so-FS-EJ1.normalTitle" = "Chuồn";
+"4so-FS-EJ1.normalTitle" = "Clubs";
 
 /* Class = "UIButton"; normalTitle = "Bích"; ObjectID = "7dM-fK-JtO"; */
-"7dM-fK-JtO.normalTitle" = "Bích";
+"7dM-fK-JtO.normalTitle" = "Spades";
 
 /* Class = "UILabel"; text = "1 giây"; ObjectID = "B5c-GF-8Wv"; */
-"B5c-GF-8Wv.text" = "1 giây";
+"B5c-GF-8Wv.text" = "1 second(s)";
 
 /* Class = "UIButton"; normalTitle = "Cơ"; ObjectID = "DgQ-uN-2Y2"; */
-"DgQ-uN-2Y2.normalTitle" = "Cơ";
+"DgQ-uN-2Y2.normalTitle" = "Hearts";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "E3Z-Ah-vwS"; */
 "E3Z-Ah-vwS.normalTitle" = "Button";
@@ -24,22 +24,22 @@
 "GqS-Yw-yHa.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Thời gian"; ObjectID = "LmI-z8-Ryn"; */
-"LmI-z8-Ryn.text" = "Thời gian";
+"LmI-z8-Ryn.text" = "Time";
 
 /* Class = "UILabel"; text = "Chọn lá bài"; ObjectID = "MC2-7k-vLF"; */
-"MC2-7k-vLF.text" = "Chọn lá bài";
+"MC2-7k-vLF.text" = "Select card";
 
 /* Class = "UILabel"; text = "Ngôn ngữ"; ObjectID = "Woh-kh-KnT"; */
-"Woh-kh-KnT.text" = "Ngôn ngữ";
+"Woh-kh-KnT.text" = "Language";
 
 /* Class = "UIButton"; normalTitle = "HUỶ"; ObjectID = "oVd-H0-9JX"; */
-"oVd-H0-9JX.normalTitle" = "HUỶ";
+"oVd-H0-9JX.normalTitle" = "CANCEL";
 
 /* Class = "UILabel"; text = "1"; ObjectID = "sb5-pp-uYq"; */
 "sb5-pp-uYq.text" = "1";
 
 /* Class = "UIButton"; normalTitle = "XONG"; ObjectID = "vtd-PQ-ATo"; */
-"vtd-PQ-ATo.normalTitle" = "XONG";
+"vtd-PQ-ATo.normalTitle" = "FINISH";
 
 /* Class = "UIButton"; normalTitle = "Rô"; ObjectID = "xIE-LY-doK"; */
-"xIE-LY-doK.normalTitle" = "Rô";
+"xIE-LY-doK.normalTitle" = "Diamonds";

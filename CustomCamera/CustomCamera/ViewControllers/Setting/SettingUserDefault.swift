@@ -12,6 +12,7 @@ let cardName = "cardName"
 let cardType = "cardType"
 let isCaptureTimer = "isCaptureTimer"
 let captureTimer = "captureTimer"
+let language = "language"
 
 class UserDefaultHelper: NSObject {
     static func saveSetting(setting: SettingModel) {
@@ -19,6 +20,7 @@ class UserDefaultHelper: NSObject {
         saveCardType(type: setting.cardType.rawValue)
         saveStatusIsCaptureTimer(isCapture: setting.isCaptureTimer)
         saveCaptureTimer(timer: setting.timer)
+        saveLanguage(lang: setting.language.rawValue)
     }
     
     static func saveCardName(name: String) {
@@ -79,6 +81,21 @@ class UserDefaultHelper: NSObject {
             return 1
         }
         return timer as! Int
+    }
+    
+    static func saveLanguage(lang: Int) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(lang, forKey: language)
+        userDefaults.synchronize()
+    }
+    
+    static func getLanguage() -> Int {
+        let userDefaults = UserDefaults.standard
+        let lang = userDefaults.value(forKey: language)
+        if lang == nil {
+            return 1
+        }
+        return lang as! Int
     }
     
     

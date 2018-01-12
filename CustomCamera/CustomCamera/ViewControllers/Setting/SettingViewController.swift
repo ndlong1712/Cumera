@@ -9,11 +9,18 @@
 import UIKit
 
 let selectColor = "3799F4"
-let second = "giây"
+let second = "second"
+
+enum Language: Int {
+    case VN = 1
+    case ENG = 0
+}
 
 class SettingViewController: UIViewController {
     static let ClassName = "SettingViewController"
 
+    @IBOutlet weak var btnVn: UIButton!
+    @IBOutlet weak var btnEngFlag: UIButton!
     @IBOutlet weak var lbSecond: UILabel!
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var imgCard: UIImageView!
@@ -27,6 +34,7 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var switchCapture: UISwitch!
     
     var setting: SettingModel?
+    var lang: Language = .VN
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +48,8 @@ class SettingViewController: UIViewController {
         let cardType = UserDefaultHelper.getCardType()
         let isCaptureTimer = UserDefaultHelper.getStatusIsCaptureTimer()
         let timer = UserDefaultHelper.getCaptureTimer()
-        setting = SettingModel(cardName: CardName(rawValue: cardName)!, cardType: CardType(rawValue: cardType)!, isCaptureTimer: isCaptureTimer, timer: timer)
+        let language = UserDefaultHelper.getLanguage()
+        setting = SettingModel(cardName: CardName(rawValue: cardName)!, cardType: CardType(rawValue: cardType)!, isCaptureTimer: isCaptureTimer, timer: timer, language: Language(rawValue: language)!)
         selectTypeCard(type: CardType(rawValue: cardType)!)
         setImageCard(set: self.setting!)
         switchCapture.isOn = isCaptureTimer
@@ -50,6 +59,8 @@ class SettingViewController: UIViewController {
         btnDiamond.layer.cornerRadius = btnHeart.frame.width/2
         btnClub.layer.cornerRadius = btnHeart.frame.width/2
         btnSpade.layer.cornerRadius = btnHeart.frame.width/2
+        
+        setupButtonLanguage(lang: language)
     }
     
     func selectTypeCard(type: CardType) {
@@ -126,6 +137,32 @@ class SettingViewController: UIViewController {
     @IBAction func didTapDoneButton(_ sender: Any) {
         UserDefaultHelper.saveSetting(setting: self.setting!)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func didTapEngFlag(_ sender: Any) {
+        setupButtonLanguage(lang: Language.ENG.rawValue)
+        setting?.language = .ENG
+        lbSecond.text = second.localized(lang: "en")
+    }
+    
+    @IBAction func didTapVnFlag(_ sender: Any) {
+        setupButtonLanguage(lang: Language.VN.rawValue)
+        setting?.language = .VN
+        lbSecond.text = second.localized(lang: "vi")
+    }
+    
+    func setupButtonLanguage(lang: Int) {
+        if lang == Language.ENG.rawValue {
+            btnEngFlag.layer.borderWidth = 2
+            btnEngFlag.layer.cornerRadius = 2
+            btnEngFlag.layer.borderColor = UIColor.blue.cgColor
+            btnVn.layer.borderWidth = 0
+        } else { // VN
+            btnVn.layer.borderWidth = 2
+            btnVn.layer.cornerRadius = 2
+            btnVn.layer.borderColor = UIColor.blue.cgColor
+            btnEngFlag.layer.borderWidth = 0
+        }
     }
     
     @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
