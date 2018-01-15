@@ -33,7 +33,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         self.labelCardName.textColor = UIColor.black
     }
     func selectItem() {
-        self.backgroundColor = UIColor().hexToColor(hexString: selectColor, alpha: 1)
+        self.backgroundColor = UIColor().hexToColor(hexString: CRSelectColor, alpha: 1)
         self.labelCardName.textColor = UIColor.white
     }
     

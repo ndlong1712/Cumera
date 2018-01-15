@@ -6,4 +6,12 @@
   Copyright © 2018 FAYA Corporation. All rights reserved.
 */
 
-"second" = "giây(s)";
+"second" = "giây";
+"selectCard" = "Chọn lá bài";
+"delayCapture" = "Chụp hẹn giờ";
+"language" = "Ngôn ngữ";
+"done" = "XONG";
+"cancel" = "HUỶ";
+"time" = "Thời gian";
+"tutorial" = "Bạn có muốn xem video hướng dẫn cách dùng ứng dụng này?";
+"captureSuccess" = "Hình đã được lưu vào Photo Library!";

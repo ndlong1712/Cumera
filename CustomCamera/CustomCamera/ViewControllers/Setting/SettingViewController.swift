@@ -8,23 +8,34 @@
 
 import UIKit
 
-let selectColor = "3799F4"
-let second = "second"
+let CRSelectColor = "3799F4"
+let CRSecond = "second"
+let CRSelectCard = "selectCard"
+let CRDelayCapture = "delayCapture"
+let CRLanguage = "language"
+let CRDone = "done"
+let CRCancel = "cancel"
+let CRTime = "time"
 
-enum Language: Int {
-    case VN = 1
-    case ENG = 0
+enum Language: String {
+    case VN = "vi"
+    case ENG = "en"
 }
 
 class SettingViewController: UIViewController {
     static let ClassName = "SettingViewController"
 
-    @IBOutlet weak var btnVn: UIButton!
-    @IBOutlet weak var btnEngFlag: UIButton!
+    @IBOutlet weak var lbLanguage: UILabel!
+    @IBOutlet weak var lbTimerCapture: UILabel!
+    @IBOutlet weak var lbPickCard: UILabel!
     @IBOutlet weak var lbSecond: UILabel!
     @IBOutlet weak var lbTime: UILabel!
+    @IBOutlet weak var btnDone: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
+    
+    @IBOutlet weak var btnVn: UIButton!
+    @IBOutlet weak var btnEngFlag: UIButton!
     @IBOutlet weak var imgCard: UIImageView!
-    @IBOutlet weak var lbTimer: UILabel!
     @IBOutlet weak var btnSpade: UIButton!
     @IBOutlet weak var btnClub: UIButton!
     @IBOutlet weak var btnDiamond: UIButton!
@@ -34,12 +45,24 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var switchCapture: UISwitch!
     
     var setting: SettingModel?
-    var lang: Language = .VN
+//    var lang: Language = .VN
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupViewTimerMode(isOn: switchCapture.isOn)
+        let lg = UserDefaultHelper.getLanguage()
+        setUpLocalize(lang: lg)
+    }
+    
+    func setUpLocalize(lang: String) {
+        lbPickCard.text = CRSelectCard.localized(lang: lang)
+        lbTimerCapture.text = CRDelayCapture.localized(lang: lang)
+        lbLanguage.text = CRLanguage.localized(lang: lang)
+        btnCancel.setTitle(CRCancel.localized(lang: lang), for: .normal)
+        btnDone.setTitle(CRDone.localized(lang: lang), for: .normal)
+        lbTime.text = CRTime.localized(lang: lang)
+        lbSecond.text = "\(Int(sliderTimer.value)) \(CRSecond.localized(lang: lang))"
     }
     
     func setupView() {
@@ -54,7 +77,7 @@ class SettingViewController: UIViewController {
         setImageCard(set: self.setting!)
         switchCapture.isOn = isCaptureTimer
         sliderTimer.value = Float(timer)
-        lbTimer.text = "\(timer) \(second)"
+        lbSecond.text = "\(timer) \(CRSecond.localized())"
         btnHeart.layer.cornerRadius = btnHeart.frame.width/2
         btnDiamond.layer.cornerRadius = btnHeart.frame.width/2
         btnClub.layer.cornerRadius = btnHeart.frame.width/2
@@ -94,7 +117,7 @@ class SettingViewController: UIViewController {
     
     func selectTypeButton(btn: UIButton) {
         btn.setTitleColor(UIColor.white, for: .normal)
-        btn.backgroundColor = UIColor().hexToColor(hexString: selectColor, alpha: 1)
+        btn.backgroundColor = UIColor().hexToColor(hexString: CRSelectColor, alpha: 1)
     }
     
     func deselectTypeButton(btn: UIButton) {
@@ -142,16 +165,16 @@ class SettingViewController: UIViewController {
     @IBAction func didTapEngFlag(_ sender: Any) {
         setupButtonLanguage(lang: Language.ENG.rawValue)
         setting?.language = .ENG
-        lbSecond.text = second.localized(lang: "en")
+        setUpLocalize(lang: (setting?.language.rawValue)!)
     }
     
     @IBAction func didTapVnFlag(_ sender: Any) {
         setupButtonLanguage(lang: Language.VN.rawValue)
         setting?.language = .VN
-        lbSecond.text = second.localized(lang: "vi")
+        setUpLocalize(lang: (setting?.language.rawValue)!)
     }
     
-    func setupButtonLanguage(lang: Int) {
+    func setupButtonLanguage(lang: String) {
         if lang == Language.ENG.rawValue {
             btnEngFlag.layer.borderWidth = 2
             btnEngFlag.layer.cornerRadius = 2
@@ -170,7 +193,7 @@ class SettingViewController: UIViewController {
             switch touchEvent.phase {
             case .began:break
             case .moved:
-                lbTimer.text = "\(Int(sliderTimer.value)) \(second)"
+                lbSecond.text = "\(Int(sliderTimer.value)) \(CRSecond.localized())"
                 break
             case .ended:
                 let timer = Int(sliderTimer.value)

@@ -11,7 +11,8 @@ import AVFoundation
 import Foundation
 import KDCircularProgress
 
-let msgCaptureSuccess = "Hình đã được lưu vào Photo Library!"
+let CRMsgCaptureSuccess = "captureSuccess"
+let CRTutorial = "tutorial"
 
 class HomeViewController: UIViewController {
     
@@ -153,15 +154,19 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func didTapIntrodution(_ sender: Any) {
-        Utilities.showAlertSavedImage(message: "Introduce...!", viewController: self) {
+        Utilities.showAlert(message: CRTutorial.localized(), okTitle: "OK", cancelTitle: CRCancel.localized(), viewController: self, okAction: {
             Utilities.openUrl(url: "https://www.youtube.com/watch?v=g20t_K9dlhU")
+        }) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func didTapInfo(_ sender: Any) {
-        Utilities.showAlertSavedImage(message: "Info...!", viewController: self) {
-            print("ok")
-        }
+//        Utilities.showAlertSavedImage(message: "Info...!", viewController: self) {
+//            print("ok")
+//        }
+        let infoViewController = Utilities.getViewController(identifier: InfoViewController.ClassName)
+        self.present(infoViewController, animated: true, completion: nil)
     }
     
     //change icon mode
@@ -257,9 +262,7 @@ class HomeViewController: UIViewController {
                             bgimgview.addSubview(copiedView) // Add the front image on top of the background
                             let imgOutPut = UIImage(view: bgimgview)
                             UIImageWriteToSavedPhotosAlbum(imgOutPut, nil, nil, nil)
-                            Utilities.showAlertSavedImage(message: msgCaptureSuccess, viewController: self, okAction: {
-                                
-                            })
+                            Utilities.showAlert(message: CRMsgCaptureSuccess.localized(), okTitle: "OK", cancelTitle: "", viewController: self, okAction: { }, cancelAction: {})
                             self.imgMini.image = imgOutPut
                             self.isCapturing = false
 //                            self.zoomInCamera(value: 1)

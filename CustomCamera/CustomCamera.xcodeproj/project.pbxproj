@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		047235689F9AA28BFC4F293A /* Pods_CustomCameraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F130B724E54EE66FFC599756 /* Pods_CustomCameraTests.framework */; };
+		9A3F3539200C55F200A088E9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F3538200C55F200A088E9 /* InfoViewController.swift */; };
 		9A5600A320011FF9004A8B29 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5600A220011FF9004A8B29 /* UIViewExtension.swift */; };
 		9A80B7C41FFFD78B0065BB4E /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80B7C31FFFD78B0065BB4E /* IconView.swift */; };
 		9ABD989220006279004692DA /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD989120006279004692DA /* UIImageExtension.swift */; };
@@ -54,6 +55,7 @@
 		31674650F7A6795333DD5E3D /* Pods-CustomCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		724585D02A92BF6BEE81D8B9 /* Pods-CustomCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.release.xcconfig"; sourceTree = "<group>"; };
 		823613606127B4A5648B6984 /* Pods_CustomCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3F3538200C55F200A088E9 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		9A5600A220011FF9004A8B29 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		9A80B7C31FFFD78B0065BB4E /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		9ABD989120006279004692DA /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -67,10 +69,7 @@
 		9ABD98A62000AAD6004692DA /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		9ABD98A82000D2A5004692DA /* ClassLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassLibrary.swift; sourceTree = "<group>"; };
 		9AEB562420086F6600FD7F54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9AEB562620086F9200FD7F54 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
-		9AEB562720086F9200FD7F54 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9AEB562820086F9300FD7F54 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9AEB562A20086FB400FD7F54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		9AEB562B200874DD00FD7F54 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		ABEF3DA9A172CF59BD7AA224 /* Pods-CustomCameraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCameraTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCameraTests/Pods-CustomCameraTests.release.xcconfig"; sourceTree = "<group>"; };
 		BAC60665F0F33504DF549721 /* Pods-CustomCameraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCameraUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCameraUITests/Pods-CustomCameraUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +130,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9A3F3537200C555600A088E9 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				9A3F3538200C55F200A088E9 /* InfoViewController.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		9A80B7C21FFFD7700065BB4E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +173,7 @@
 		9ABD9895200074F9004692DA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A3F3537200C555600A088E9 /* Info */,
 				9ABD989720007507004692DA /* Setting */,
 				9ABD989620007503004692DA /* Home */,
 			);
@@ -587,6 +595,7 @@
 				9ABD98A32000A0F9004692DA /* UIColorExtension.swift in Sources */,
 				9ABD989220006279004692DA /* UIImageExtension.swift in Sources */,
 				9ABD98992000753A004692DA /* SettingViewController.swift in Sources */,
+				9A3F3539200C55F200A088E9 /* InfoViewController.swift in Sources */,
 				9ABD98A92000D2A5004692DA /* ClassLibrary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,8 +645,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				C779EB491DA625B800BFF796 /* Base */,
-				9AEB562620086F9200FD7F54 /* vi */,
-				9AEB562A20086FB400FD7F54 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -646,7 +653,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				C779EB4E1DA625B800BFF796 /* Base */,
-				9AEB562720086F9200FD7F54 /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

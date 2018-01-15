@@ -22,12 +22,19 @@ class Utilities: NSObject {
         return imgCard!
     }
   
-    static func showAlertSavedImage(message: String, viewController: UIViewController, okAction: @escaping () -> Void) {
+    static func showAlert(message: String, okTitle: String, cancelTitle: String, viewController: UIViewController, okAction: @escaping () -> Void, cancelAction: @escaping () -> Void) {
     let alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
     let action = UIAlertAction(title: "OK", style: .default, handler: { (alert) in
         okAction()
     })
-    alertView.addAction(action)
+        if cancelTitle != "" {
+            let cancel = UIAlertAction(title: CRCancel.localized(), style: .cancel, handler: { (alert) in
+                cancelAction()
+            })
+            alertView.addAction(cancel)
+        }
+        
+        alertView.addAction(action)
     viewController.present(alertView, animated: true, completion: nil)
   }
     

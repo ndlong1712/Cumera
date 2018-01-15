@@ -7,3 +7,11 @@
 */
 
 "second" = "second(s)";
+"selectCard" = "Select card";
+"delayCapture" = "Delay Capture";
+"language" = "Language";
+"done" = "FINISH";
+"cancel" = "CANCEL";
+"time" = "Time";
+"tutorial" = "Let me show you how to use this application by watching a youtube video.";
+"captureSuccess" = "Your image has been saved to Photo Library!";

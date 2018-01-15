@@ -83,19 +83,19 @@ class UserDefaultHelper: NSObject {
         return timer as! Int
     }
     
-    static func saveLanguage(lang: Int) {
+    static func saveLanguage(lang: String) {
         let userDefaults = UserDefaults.standard
         userDefaults.setValue(lang, forKey: language)
         userDefaults.synchronize()
     }
     
-    static func getLanguage() -> Int {
+    static func getLanguage() -> String {
         let userDefaults = UserDefaults.standard
         let lang = userDefaults.value(forKey: language)
         if lang == nil {
-            return 1
+            return "en"
         }
-        return lang as! Int
+        return lang as! String
     }
     
     
