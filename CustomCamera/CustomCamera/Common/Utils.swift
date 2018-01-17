@@ -8,8 +8,23 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class Utilities: NSObject {
+    static func checkPhotoLibraryPermission() -> Bool {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .authorized:
+            return true
+        //handle authorized status
+        case .denied, .restricted :
+            return false
+        //handle denied status
+        case .notDetermined:
+            return true
+        }
+    }
+    
     static func getViewController(identifier: String) -> UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: identifier)

@@ -15,3 +15,4 @@
 "time" = "Thời gian";
 "tutorial" = "Bạn có muốn xem video hướng dẫn cách dùng ứng dụng này?";
 "captureSuccess" = "Hình đã được lưu vào Photo Library!";
+"captureError" = "Lưu hình lỗi!";

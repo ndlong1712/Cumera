@@ -12,6 +12,7 @@ import Foundation
 import KDCircularProgress
 
 let CRMsgCaptureSuccess = "captureSuccess"
+let CRMsgCaptureError = "captureError"
 let CRTutorial = "tutorial"
 let youtubeURL = "https://www.youtube.com/watch?v=g20t_K9dlhU"
 
@@ -46,6 +47,9 @@ class HomeViewController: UIViewController {
         setupProgressBar()
 //        setupLastestImage()
         NotificationCenter.default.addObserver(self, selector: #selector(deviceDidRotate), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    override func viewDidLayoutSubviews() {
         
     }
     
@@ -230,46 +234,52 @@ class HomeViewController: UIViewController {
             return
         }
         
-        
-        previewLayer.frame = self.viewCamera.frame
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        self.viewCamera.layoutIfNeeded()
+         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        previewLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.view.layer.addSublayer(previewLayer)
         captureSession.startRunning()
         self.view.addSubview(btnSetting)
         self.view.addSubview(btnAds)
         self.view.addSubview(btnInfo)
+        self.view.addSubview(viewBot)
         
     }
     
     func saveToCamera() {
-        
-        if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
-//            zoomOutCamera(value: 1)
-            stillImageOutput.isHighResolutionStillImageOutputEnabled = true
-            stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (CMSampleBuffer, Error) in
-                if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer) {
-                    
-                    if let cameraImage = UIImage(data: imageData) {
-                        let bgimgview = UIImageView(image: cameraImage) // Create the view holding the image
+            if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
+                //            zoomOutCamera(value: 1)
+                stillImageOutput.isHighResolutionStillImageOutputEnabled = true
+                stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (CMSampleBuffer, Error) in
+                    if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer) {
                         
-                        let screenSize = UIScreen.main.bounds
-                        bgimgview.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
-                        
-                        if let icon = self.imgViewIcon {
-                            let copiedView: UIImageView = icon.copyView()
-                            bgimgview.addSubview(copiedView) // Add the front image on top of the background
-                            let imgOutPut = UIImage(view: bgimgview)
-                            UIImageWriteToSavedPhotosAlbum(imgOutPut, nil, nil, nil)
-                            Utilities.showAlert(message: CRMsgCaptureSuccess.localized(), okTitle: "OK", cancelTitle: "", viewController: self, okAction: { }, cancelAction: {})
-                            self.imgMini.image = imgOutPut
-                            self.isCapturing = false
-//                            self.zoomInCamera(value: 1)
+                        if let cameraImage = UIImage(data: imageData) {
+                            let bgimgview = UIImageView(image: cameraImage) // Create the view holding the image
+                            
+                            let screenSize = UIScreen.main.bounds
+                            bgimgview.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+                            
+                            if let icon = self.imgViewIcon {
+                                let copiedView: UIImageView = icon.copyView()
+                                bgimgview.addSubview(copiedView) // Add the front image on top of the background
+                                let imgOutPut = UIImage(view: bgimgview)
+                                UIImageWriteToSavedPhotosAlbum(imgOutPut, self, #selector(HomeViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                            }
+                            
                         }
-                        
                     }
-                }
-            })
+                })
         }
+    }
+    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let er = error {
+            // we got back an error!
+            Utilities.showAlert(message: er.localizedDescription, okTitle: "OK", cancelTitle: "", viewController: self, okAction: { }, cancelAction: {})
+        } else {
+            Utilities.showAlert(message: CRMsgCaptureSuccess.localized(), okTitle: "OK", cancelTitle: "", viewController: self, okAction: { }, cancelAction: {})
+            self.imgMini.image = image
+        }
+        self.isCapturing = false
     }
     
     func changeBrightModeIcon(currentMode: BrightStyle, iconView: IconView) {
