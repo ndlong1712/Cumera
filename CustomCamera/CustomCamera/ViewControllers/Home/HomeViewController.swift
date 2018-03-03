@@ -100,7 +100,15 @@ class HomeViewController: UIViewController {
         progress.addTapGesture(tapNumber: 1, target: self, action: #selector(actionCameraCapture))
         progress.set(colors: UIColor.blue, UIColor.cyan, UIColor.blue)
         progress.progressInsideFillColor = UIColor.red
+        
         viewBot.addSubview(progress)
+        
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        // Constraint center and width
+        viewBot.addConstraint(NSLayoutConstraint(item: progress, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: widthProgres))
+        viewBot.addConstraint(NSLayoutConstraint(item: progress, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: widthProgres))
+        viewBot.addConstraint(NSLayoutConstraint(item: progress, attribute: .centerX, relatedBy: .equal, toItem: viewBot, attribute: .centerX, multiplier: 1.0, constant: 0.0));
+        viewBot.addConstraint(NSLayoutConstraint(item: progress, attribute: .centerY, relatedBy: .equal, toItem: viewBot, attribute: .centerY, multiplier: 1.0, constant: 0.0));
     }
   
     func setupCamera() {
