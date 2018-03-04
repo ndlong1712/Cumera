@@ -14,7 +14,7 @@ import KDCircularProgress
 let CRMsgCaptureSuccess = "captureSuccess"
 let CRMsgCaptureError = "captureError"
 let CRTutorial = "tutorial"
-let youtubeURL = "https://www.youtube.com/watch?v=g20t_K9dlhU"
+let youtubeURL = "https://www.youtube.com/channel/UCPG9BazSiVtfTGfvNFLxZmg"
 
 class HomeViewController: UIViewController {
     
