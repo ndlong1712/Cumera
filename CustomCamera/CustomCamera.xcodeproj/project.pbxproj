@@ -286,9 +286,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C779EB401DA625B800BFF796 /* CustomCamera */ = {
+		C779EB401DA625B800BFF796 /* Cheese */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C779EB691DA625B900BFF796 /* Build configuration list for PBXNativeTarget "CustomCamera" */;
+			buildConfigurationList = C779EB691DA625B900BFF796 /* Build configuration list for PBXNativeTarget "Cheese" */;
 			buildPhases = (
 				397CF9097B855C6DDE07099C /* [CP] Check Pods Manifest.lock */,
 				C779EB3D1DA625B800BFF796 /* Sources */,
@@ -301,7 +301,7 @@
 			);
 			dependencies = (
 			);
-			name = CustomCamera;
+			name = Cheese;
 			productName = CustomCamera;
 			productReference = C779EB411DA625B800BFF796 /* CustomCamera.app */;
 			productType = "com.apple.product-type.application";
@@ -360,8 +360,8 @@
 				TargetAttributes = {
 					C779EB401DA625B800BFF796 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 4GM45MBX62;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = B5KML4S479;
+						ProvisioningStyle = Manual;
 					};
 					C779EB541DA625B900BFF796 = {
 						CreatedOnToolsVersion = 8.0;
@@ -391,7 +391,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C779EB401DA625B800BFF796 /* CustomCamera */,
+				C779EB401DA625B800BFF796 /* Cheese */,
 				C779EB541DA625B900BFF796 /* CustomCameraTests */,
 				C779EB5F1DA625B900BFF796 /* CustomCameraUITests */,
 			);
@@ -621,12 +621,12 @@
 /* Begin PBXTargetDependency section */
 		C779EB571DA625B900BFF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C779EB401DA625B800BFF796 /* CustomCamera */;
+			target = C779EB401DA625B800BFF796 /* Cheese */;
 			targetProxy = C779EB561DA625B900BFF796 /* PBXContainerItemProxy */;
 		};
 		C779EB621DA625B900BFF796 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C779EB401DA625B800BFF796 /* CustomCamera */;
+			target = C779EB401DA625B800BFF796 /* Cheese */;
 			targetProxy = C779EB611DA625B900BFF796 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -759,14 +759,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4GM45MBX62;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = LACAERZG26;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = globedr.app.GlobeDrQr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c78d411e-0b99-472f-a442-4242f66ba742";
+				PROVISIONING_PROFILE_SPECIFIER = AllApp_Dev;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -776,15 +777,16 @@
 			baseConfigurationReference = 724585D02A92BF6BEE81D8B9 /* Pods-CustomCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4GM45MBX62;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = B5KML4S479;
 				INFOPLIST_FILE = CustomCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = globedr.app.GlobeDrQr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c33cf525-6d55-4f04-93f2-b68ac9f3b882";
+				PROVISIONING_PROFILE_SPECIFIER = Cheese_AppStore;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -863,7 +865,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C779EB691DA625B900BFF796 /* Build configuration list for PBXNativeTarget "CustomCamera" */ = {
+		C779EB691DA625B900BFF796 /* Build configuration list for PBXNativeTarget "Cheese" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C779EB6A1DA625B900BFF796 /* Debug */,
