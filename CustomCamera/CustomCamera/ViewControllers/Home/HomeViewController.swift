@@ -16,6 +16,13 @@ let CRMsgCaptureError = "captureError"
 let CRTutorial = "tutorial"
 let youtubeURL = "https://www.youtube.com/channel/UCPG9BazSiVtfTGfvNFLxZmg"
 
+enum CurrentOrientation: Int {
+    case portrait = 0
+    case left = 1
+    case right = 2
+    case upsideDown = 3
+}
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var viewBot: UIView!
@@ -39,7 +46,8 @@ class HomeViewController: UIViewController {
     var dragStart: CGPoint?
     var center = CGPoint(x: 150, y: 150)
     var isCapturing = false
-
+    var currentDegree:CGFloat = 0
+    var currentOrientation = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,26 +66,62 @@ class HomeViewController: UIViewController {
     }
     
     func deviceDidRotate() {
-        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
-            print("Landscape")
-            rotateIcon(from: 0, to: Float.pi/2)
+        if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft{
+            if currentOrientation == CurrentOrientation.portrait.rawValue {
+                self.rotateIcon(degree: CGFloat.pi/2)
+            } else if currentOrientation == CurrentOrientation.right.rawValue {
+                self.rotateIcon(degree: CGFloat.pi)
+            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
+                self.rotateIcon(degree: -CGFloat.pi/2)
+            }
+            currentOrientation = CurrentOrientation.left.rawValue
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight{
+            if currentOrientation == CurrentOrientation.portrait.rawValue {
+                self.rotateIcon(degree: -CGFloat.pi/2)
+            } else if currentOrientation == CurrentOrientation.left.rawValue {
+                self.rotateIcon(degree: CGFloat.pi)
+            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
+                self.rotateIcon(degree: CGFloat.pi/2)
+            }
+            currentOrientation = CurrentOrientation.right.rawValue
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown{
+            if currentOrientation == CurrentOrientation.portrait.rawValue {
+                self.rotateIcon(degree: -CGFloat.pi)
+            } else if currentOrientation == CurrentOrientation.right.rawValue {
+                self.rotateIcon(degree: -CGFloat.pi/2)
+            } else if currentOrientation == CurrentOrientation.left.rawValue {
+                self.rotateIcon(degree: CGFloat.pi/2)
+            }
+            currentOrientation = CurrentOrientation.upsideDown.rawValue
+        }
+        else if UIDevice.current.orientation == UIDeviceOrientation.portrait{
+            if currentOrientation == CurrentOrientation.left.rawValue {
+                self.rotateIcon(degree: -CGFloat.pi/2)
+            } else if currentOrientation == CurrentOrientation.right.rawValue {
+                self.rotateIcon(degree: CGFloat.pi/2)
+            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
+                self.rotateIcon(degree: -CGFloat.pi)
+            }
+            currentOrientation = CurrentOrientation.portrait.rawValue
         }
         
-        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
-            print("Portraint")
-             rotateIcon(from: Float.pi/2, to: 0)
-        }
         
     }
     
-    func rotateIcon(from: Float, to: Float)  {
-        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotationAnimation.fromValue = from
-        rotationAnimation.toValue = to
-        rotationAnimation.duration = 0.5
-        rotationAnimation.isRemovedOnCompletion = false
-        rotationAnimation.fillMode = kCAFillModeForwards
-        self.imgViewIcon?.layer.add(rotationAnimation, forKey: nil)
+    func rotateIcon(degree: CGFloat)  {
+//        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+//        rotationAnimation.fromValue = from
+//        rotationAnimation.toValue = to
+//        rotationAnimation.duration = 0.5
+//        rotationAnimation.isRemovedOnCompletion = false
+//        rotationAnimation.fillMode = kCAFillModeForwards
+//        self.imgViewIcon?.layer.add(rotationAnimation, forKey: nil)
+        UIView.animate(withDuration: 0.5) {
+          self.imgViewIcon?.transform = (self.imgViewIcon?.transform.rotated(by: degree))!
+        }
+        
     }
     
     func setupProgressBar() {
@@ -264,7 +308,6 @@ class HomeViewController: UIViewController {
                         if let cameraImage = UIImage(data: imageData) {
                             let bgimgview = UIImageView(image: cameraImage) // Create the view holding the image
                             
-                            let screenSize = UIScreen.main.bounds
                             bgimgview.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
                             
                             if let icon = self.imgViewIcon {
@@ -284,7 +327,6 @@ class HomeViewController: UIViewController {
             // we got back an error!
             Utilities.showAlert(message: er.localizedDescription, okTitle: "OK", cancelTitle: "", viewController: self, okAction: { }, cancelAction: {})
         } else {
-            Utilities.showAlert(message: CRMsgCaptureSuccess.localized(), okTitle: "OK", cancelTitle: "", viewController: self, okAction: { }, cancelAction: {})
             self.imgMini.image = image
         }
         self.isCapturing = false

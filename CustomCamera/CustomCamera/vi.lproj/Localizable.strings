@@ -6,13 +6,23 @@
   Copyright © 2018 FAYA Corporation. All rights reserved.
 */
 
-"second" = "giây";
-"selectCard" = "Chọn lá bài";
-"delayCapture" = "Chụp hẹn giờ";
-"language" = "Ngôn ngữ";
-"done" = "XONG";
-"cancel" = "HUỶ";
-"time" = "Thời gian";
-"tutorial" = "Bạn có muốn xem video hướng dẫn cách dùng ứng dụng này?";
-"captureSuccess" = "Hình đã được lưu vào Photo Library!";
-"captureError" = "Lưu hình lỗi!";
+//"second" = "giây";
+//"selectCard" = "Chọn lá bài";
+//"delayCapture" = "Chụp hẹn giờ";
+//"language" = "Ngôn ngữ";
+//"done" = "XONG";
+//"cancel" = "HUỶ";
+//"time" = "Thời gian";
+//"tutorial" = "Bạn có muốn xem video hướng dẫn cách dùng ứng dụng này?";
+//"captureSuccess" = "Hình đã được lưu vào Photo Library!";
+//"captureError" = "Lưu hình lỗi!";
+"second" = "second(s)";
+"selectCard" = "Select card";
+"delayCapture" = "Delay Capture";
+"language" = "Language";
+"done" = "FINISH";
+"cancel" = "CANCEL";
+"time" = "Time";
+"tutorial" = "Let me show you how to use this application by watching a youtube video.";
+"captureSuccess" = "Your image has been saved to Photo Library!";
+"captureError" = "Save Error";

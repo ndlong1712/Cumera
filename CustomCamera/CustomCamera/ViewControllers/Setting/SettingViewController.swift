@@ -58,7 +58,7 @@ class SettingViewController: UIViewController {
     func setUpLocalize(lang: String) {
         lbPickCard.text = CRSelectCard.localized(lang: lang)
         lbTimerCapture.text = CRDelayCapture.localized(lang: lang)
-        lbLanguage.text = CRLanguage.localized(lang: lang)
+//        lbLanguage.text = CRLanguage.localized(lang: lang)
         btnCancel.setTitle(CRCancel.localized(lang: lang), for: .normal)
         btnDone.setTitle(CRDone.localized(lang: lang), for: .normal)
         lbTime.text = CRTime.localized(lang: lang)
@@ -78,12 +78,13 @@ class SettingViewController: UIViewController {
         switchCapture.isOn = isCaptureTimer
         sliderTimer.value = Float(timer)
         lbSecond.text = "\(timer) \(CRSecond.localized())"
+        self.view.layoutIfNeeded()
         btnHeart.layer.cornerRadius = btnHeart.frame.width/2
         btnDiamond.layer.cornerRadius = btnHeart.frame.width/2
         btnClub.layer.cornerRadius = btnHeart.frame.width/2
         btnSpade.layer.cornerRadius = btnHeart.frame.width/2
         
-        setupButtonLanguage(lang: language)
+//        setupButtonLanguage(lang: language)
     }
     
     func selectTypeCard(type: CardType) {
