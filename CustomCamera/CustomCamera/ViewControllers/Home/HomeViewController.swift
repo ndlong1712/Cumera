@@ -125,7 +125,7 @@ class HomeViewController: UIViewController {
     }
     
     func setupProgressBar() {
-        let widthProgres = self.viewBot.frame.width * 0.7
+        let widthProgres = self.viewBot.frame.height * 0.7
         let x = self.viewBot.frame.width/2 - widthProgres/2
         let y = self.viewBot.frame.height/2 - widthProgres/2
         progress = KDCircularProgress(frame: CGRect(x: x, y: y, width: widthProgres, height: widthProgres))
@@ -257,10 +257,11 @@ class HomeViewController: UIViewController {
         let nameCard = UserDefaultHelper.getCardName()
         let typeCard = UserDefaultHelper.getCardType()
         let frontImg = Utilities.showCard(cardName: CardName(rawValue: nameCard)!, cardType: CardType(rawValue: typeCard)!)
-//        let rotateImage = frontImg.image(withRotation: -0.5 * CGFloat.pi)
         imgViewIcon = IconView(image: frontImg)
+        imgViewIcon?.typeCard = CardType(rawValue: typeCard)!
+        imgViewIcon?.nameCard = nameCard
         imgViewIcon?.delegate = self
-        imgViewIcon?.frame = CGRect(x: 150, y: 150, width: 70, height: 100)
+        imgViewIcon?.frame = CGRect(x: 140, y: 200, width: 100, height: 70)
         imgViewIcon?.setUpImageView()
         imgViewIcon?.isUserInteractionEnabled = true
 
@@ -309,8 +310,7 @@ class HomeViewController: UIViewController {
                         if let cameraImage = UIImage(data: imageData) {
                             if let icon = self.imgViewIcon {
                                 let newImg = self.saveImage(bottomImage: cameraImage, topImage: icon.image!, frameTopImage: icon.frame)
-                                
-                                UIImageWriteToSavedPhotosAlbum(newImg, self, #selector(HomeViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                                UIImageWriteToSavedPhotosAlbum(newImg.image(withRotation: -0.5 * CGFloat.pi), self, #selector(HomeViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                             }
                             
                         }

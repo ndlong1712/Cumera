@@ -259,7 +259,7 @@ extension SettingViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let widthScreen = UIScreen.main.bounds.size.width
-        return CGSize(width: widthScreen/13 - 4.3 , height: widthScreen/13 - 4.3)
+        return CGSize(width: widthScreen/7 - 4.3 , height: widthScreen/7 - 4.3)
     }
     
     func collectionView(_ collectionView: UICollectionView,

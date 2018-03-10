@@ -23,7 +23,8 @@ class IconView: UIImageView {
   private var originalCenter: CGPoint?
   private var dragStart: CGPoint?
     var viewAlpha: UIView?
-    var rootImage: UIImage?
+    var typeCard: CardType?
+    var nameCard: String?
     var delegate: IConViewDelegate?
     var brightMode: BrightStyle? {
         didSet {
@@ -36,25 +37,43 @@ class IconView: UIImageView {
 //        viewAlpha = UIView(frame: frame)
 //        viewAlpha?.backgroundColor = UIColor.black
 //        self.addSubview(viewAlpha!)
-        rootImage = self.image
         brightMode = .Dark
     }
     
     func setBrightColor(mode: BrightStyle) {
         switch mode {
         case .Dark:
+            let imageName = "D\(nameCard!)_\(typeCard!)"
+            self.image = UIImage(named: imageName)?.image(withRotation: 0.5 * CGFloat.pi)
 //            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "7000000")))! // !!
-//            self.layer.opacity = 0.92
             break
         case .Normal:
+            let imageName = "N\(nameCard!)_\(typeCard!)"
+            self.image = UIImage(named: imageName)?.image(withRotation: 0.5 * CGFloat.pi)
 //            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "40000000")))! // !!
-//            self.layer.opacity = 0.96
             break
         case .Light:
+            let imageName = "H\(nameCard!)_\(typeCard!)"
+            self.image = UIImage(named: imageName)?.image(withRotation: 0.5 * CGFloat.pi)
 //            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "00000000")))! //!!
-//            self.layer.opacity = 1
             break
         }
+    }
+    
+    func setCard(type: CardType, mode: BrightStyle) {
+        if mode == .Light {
+            
+        }
+        if type == .spades {
+            
+        }
+        if type == .hearts {
+            
+        }
+        if type == .diamonds {
+            
+        }
+        
     }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
