@@ -66,46 +66,46 @@ class HomeViewController: UIViewController {
     }
     
     func deviceDidRotate() {
-        if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft{
-            if currentOrientation == CurrentOrientation.portrait.rawValue {
-                self.rotateIcon(degree: CGFloat.pi/2)
-            } else if currentOrientation == CurrentOrientation.right.rawValue {
-                self.rotateIcon(degree: CGFloat.pi)
-            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
-                self.rotateIcon(degree: -CGFloat.pi/2)
-            }
-            currentOrientation = CurrentOrientation.left.rawValue
-        }
-        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight{
-            if currentOrientation == CurrentOrientation.portrait.rawValue {
-                self.rotateIcon(degree: -CGFloat.pi/2)
-            } else if currentOrientation == CurrentOrientation.left.rawValue {
-                self.rotateIcon(degree: CGFloat.pi)
-            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
-                self.rotateIcon(degree: CGFloat.pi/2)
-            }
-            currentOrientation = CurrentOrientation.right.rawValue
-        }
-        else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown{
-            if currentOrientation == CurrentOrientation.portrait.rawValue {
-                self.rotateIcon(degree: -CGFloat.pi)
-            } else if currentOrientation == CurrentOrientation.right.rawValue {
-                self.rotateIcon(degree: -CGFloat.pi/2)
-            } else if currentOrientation == CurrentOrientation.left.rawValue {
-                self.rotateIcon(degree: CGFloat.pi/2)
-            }
-            currentOrientation = CurrentOrientation.upsideDown.rawValue
-        }
-        else if UIDevice.current.orientation == UIDeviceOrientation.portrait{
-            if currentOrientation == CurrentOrientation.left.rawValue {
-                self.rotateIcon(degree: -CGFloat.pi/2)
-            } else if currentOrientation == CurrentOrientation.right.rawValue {
-                self.rotateIcon(degree: CGFloat.pi/2)
-            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
-                self.rotateIcon(degree: -CGFloat.pi)
-            }
-            currentOrientation = CurrentOrientation.portrait.rawValue
-        }
+//        if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft{
+//            if currentOrientation == CurrentOrientation.portrait.rawValue {
+//                self.rotateIcon(degree: CGFloat.pi/2)
+//            } else if currentOrientation == CurrentOrientation.right.rawValue {
+//                self.rotateIcon(degree: CGFloat.pi)
+//            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
+//                self.rotateIcon(degree: -CGFloat.pi/2)
+//            }
+//            currentOrientation = CurrentOrientation.left.rawValue
+//        }
+//        else if UIDevice.current.orientation == UIDeviceOrientation.landscapeRight{
+//            if currentOrientation == CurrentOrientation.portrait.rawValue {
+//                self.rotateIcon(degree: -CGFloat.pi/2)
+//            } else if currentOrientation == CurrentOrientation.left.rawValue {
+//                self.rotateIcon(degree: CGFloat.pi)
+//            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
+//                self.rotateIcon(degree: CGFloat.pi/2)
+//            }
+//            currentOrientation = CurrentOrientation.right.rawValue
+//        }
+//        else if UIDevice.current.orientation == UIDeviceOrientation.portraitUpsideDown{
+//            if currentOrientation == CurrentOrientation.portrait.rawValue {
+//                self.rotateIcon(degree: -CGFloat.pi)
+//            } else if currentOrientation == CurrentOrientation.right.rawValue {
+//                self.rotateIcon(degree: -CGFloat.pi/2)
+//            } else if currentOrientation == CurrentOrientation.left.rawValue {
+//                self.rotateIcon(degree: CGFloat.pi/2)
+//            }
+//            currentOrientation = CurrentOrientation.upsideDown.rawValue
+//        }
+//        else if UIDevice.current.orientation == UIDeviceOrientation.portrait{
+//            if currentOrientation == CurrentOrientation.left.rawValue {
+//                self.rotateIcon(degree: -CGFloat.pi/2)
+//            } else if currentOrientation == CurrentOrientation.right.rawValue {
+//                self.rotateIcon(degree: CGFloat.pi/2)
+//            } else if currentOrientation == CurrentOrientation.upsideDown.rawValue {
+//                self.rotateIcon(degree: -CGFloat.pi)
+//            }
+//            currentOrientation = CurrentOrientation.portrait.rawValue
+//        }
         
         
     }
@@ -125,7 +125,7 @@ class HomeViewController: UIViewController {
     }
     
     func setupProgressBar() {
-        let widthProgres = self.viewBot.frame.height * 0.7
+        let widthProgres = self.viewBot.frame.width * 0.7
         let x = self.viewBot.frame.width/2 - widthProgres/2
         let y = self.viewBot.frame.height/2 - widthProgres/2
         progress = KDCircularProgress(frame: CGRect(x: x, y: y, width: widthProgres, height: widthProgres))
@@ -257,6 +257,7 @@ class HomeViewController: UIViewController {
         let nameCard = UserDefaultHelper.getCardName()
         let typeCard = UserDefaultHelper.getCardType()
         let frontImg = Utilities.showCard(cardName: CardName(rawValue: nameCard)!, cardType: CardType(rawValue: typeCard)!)
+//        let rotateImage = frontImg.image(withRotation: -0.5 * CGFloat.pi)
         imgViewIcon = IconView(image: frontImg)
         imgViewIcon?.delegate = self
         imgViewIcon?.frame = CGRect(x: 150, y: 150, width: 70, height: 100)
@@ -306,15 +307,10 @@ class HomeViewController: UIViewController {
                     if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(CMSampleBuffer) {
                         
                         if let cameraImage = UIImage(data: imageData) {
-                            let bgimgview = UIImageView(image: cameraImage) // Create the view holding the image
-                            
-                            bgimgview.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-                            
                             if let icon = self.imgViewIcon {
-                                let copiedView: UIImageView = icon.copyView()
-                                bgimgview.addSubview(copiedView) // Add the front image on top of the background
-                                let imgOutPut = UIImage(view: bgimgview)
-                                UIImageWriteToSavedPhotosAlbum(imgOutPut, self, #selector(HomeViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                                let newImg = self.saveImage(bottomImage: cameraImage, topImage: icon.image!, frameTopImage: icon.frame)
+                                
+                                UIImageWriteToSavedPhotosAlbum(newImg, self, #selector(HomeViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                             }
                             
                         }
@@ -322,6 +318,7 @@ class HomeViewController: UIViewController {
                 })
         }
     }
+    
     func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let er = error {
             // we got back an error!
@@ -330,6 +327,16 @@ class HomeViewController: UIViewController {
             self.imgMini.image = image
         }
         self.isCapturing = false
+    }
+    
+    func saveImage(bottomImage: UIImage, topImage: UIImage, frameTopImage: CGRect) -> UIImage {
+        let newSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        bottomImage.draw(in: CGRect(origin: .zero, size: newSize))
+        topImage.draw(in: frameTopImage)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
     
     func changeBrightModeIcon(currentMode: BrightStyle, iconView: IconView) {

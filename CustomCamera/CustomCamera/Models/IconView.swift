@@ -43,16 +43,16 @@ class IconView: UIImageView {
     func setBrightColor(mode: BrightStyle) {
         switch mode {
         case .Dark:
-            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "66000000")))! // !!
-            self.layer.opacity = 0.9
+//            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "7000000")))! // !!
+//            self.layer.opacity = 0.92
             break
         case .Normal:
-            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "33000000")))! // !!
-            self.layer.opacity = 0.95
+//            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "40000000")))! // !!
+//            self.layer.opacity = 0.96
             break
         case .Light:
-            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "00000000")))! //!!
-            self.layer.opacity = 1
+//            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "00000000")))! //!!
+//            self.layer.opacity = 1
             break
         }
     }
@@ -82,4 +82,6 @@ class IconView: UIImageView {
   }
 
 }
+
+
 
