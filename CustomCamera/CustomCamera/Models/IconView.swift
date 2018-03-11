@@ -44,17 +44,17 @@ class IconView: UIImageView {
         switch mode {
         case .Dark:
             let imageName = "D\(nameCard!)_\(typeCard!)"
-            self.image = UIImage(named: imageName)?.image(withRotation: 0.5 * CGFloat.pi)
+            self.image = UIImage(named: imageName)?.image(withRotation: -0.5 * CGFloat.pi)
 //            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "7000000")))! // !!
             break
         case .Normal:
             let imageName = "N\(nameCard!)_\(typeCard!)"
-            self.image = UIImage(named: imageName)?.image(withRotation: 0.5 * CGFloat.pi)
+            self.image = UIImage(named: imageName)?.image(withRotation: -0.5 * CGFloat.pi)
 //            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "40000000")))! // !!
             break
         case .Light:
             let imageName = "H\(nameCard!)_\(typeCard!)"
-            self.image = UIImage(named: imageName)?.image(withRotation: 0.5 * CGFloat.pi)
+            self.image = UIImage(named: imageName)?.image(withRotation: -0.5 * CGFloat.pi)
 //            self.image? = (rootImage?.tint(tintColor: UIColor.init(hexString: "00000000")))! //!!
             break
         }
