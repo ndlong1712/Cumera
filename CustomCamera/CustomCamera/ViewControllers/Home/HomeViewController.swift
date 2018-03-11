@@ -310,7 +310,8 @@ class HomeViewController: UIViewController {
                         if let cameraImage = UIImage(data: imageData) {
                             if let icon = self.imgViewIcon {
                                 let newImg = self.saveImage(bottomImage: cameraImage, topImage: icon.image!, frameTopImage: icon.frame)
-                                UIImageWriteToSavedPhotosAlbum(newImg.image(withRotation: 0.5 * CGFloat.pi), self, #selector(HomeViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
+                                let imageToDisplay = UIImage.init(cgImage: newImg.cgImage!, scale: newImg.scale, orientation: UIImageOrientation.left)
+                                UIImageWriteToSavedPhotosAlbum(imageToDisplay, self, #selector(HomeViewController.image(_:didFinishSavingWithError:contextInfo:)), nil)
                             }
                             
                         }
