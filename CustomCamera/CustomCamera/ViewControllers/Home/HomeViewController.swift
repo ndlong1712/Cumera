@@ -261,7 +261,7 @@ class HomeViewController: UIViewController {
         imgViewIcon?.typeCard = CardType(rawValue: typeCard)!
         imgViewIcon?.nameCard = nameCard
         imgViewIcon?.delegate = self
-        imgViewIcon?.frame = CGRect(x: 140, y: 200, width: 100, height: 70)
+        imgViewIcon?.frame = CGRect(x: 140, y: 200, width: 100, height: 78)
         imgViewIcon?.setUpImageView()
         imgViewIcon?.isUserInteractionEnabled = true
 
