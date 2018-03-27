@@ -7,13 +7,39 @@
 //
 
 import UIKit
+import Alamofire
 
 class CodeVerificationController: UIViewController {
 
+    @IBOutlet weak var codeTextField: UITextField!
+    @IBOutlet weak var labelNo1: BorderedLabel!
+    @IBOutlet weak var labelNo2: BorderedLabel!
+    @IBOutlet weak var labelNo3: BorderedLabel!
+    @IBOutlet weak var labelNo4: BorderedLabel!
+    @IBOutlet weak var labelNo5: BorderedLabel!
+    @IBOutlet weak var labelNo6: BorderedLabel!
+    @IBOutlet weak var labelNo7: BorderedLabel!
+    @IBOutlet weak var labelNo8: BorderedLabel!
+    @IBOutlet weak var labelNo9: BorderedLabel!
+    @IBOutlet weak var labelNo10: BorderedLabel!
+    
+    var labelArray = [UILabel]()
+    
+    let maxCodeLength = 10
+    let urlCheckCode = "https://smagicproductions-1.herokuapp.com/codes"
+    let ud_timesWrong = "times_wrong"
+    let maximumCodeSubmits = 5
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        labelArray = [labelNo1, labelNo2, labelNo3, labelNo4, labelNo5, labelNo6, labelNo7, labelNo8, labelNo9, labelNo10]
+        
+        codeTextField.becomeFirstResponder()
+        codeTextField.text = "";
+        codeTextField.delegate = self
+        codeTextField.addTarget(self, action: #selector(codeTextFieldDidChanged(textField:)), for: .editingChanged)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +47,111 @@ class CodeVerificationController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func codeTextFieldDidChanged(textField: UITextField) {
+        let code = textField.text ?? ""
+        let codeLength = code.count
+        for i in 0..<codeLength {
+            let index = code.index(code.startIndex, offsetBy: i)
+            labelArray[i].text = String(code[index]);
+        }
+        for i in codeLength..<maxCodeLength {
+            labelArray[i].text = ""
+        }
     }
-    */
+    
+    @IBAction func goButtonDidClick(_ sender: UIButton) {
+        let code = codeTextField.text ?? ""
+        guard code.count == 10 else {
+            return
+        }
+        print("Code \(code)")
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 30 // 30 seconds.
+        
+        let params: Parameters = [
+            "code": code,
+            "uuid": "ios_uuid"
+        ]
 
+        manager.request(urlCheckCode, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { [weak self] response in
+            if let error = response.error {
+                self?.handleError(error: error as NSError)
+            } else {
+                if let jsonData = response.result.value as? [String:Any] {
+                    print(jsonData)
+                    self?.handleServerResponse(json: jsonData)
+                } else {
+                    self?.handleError(error: nil)
+                }
+            }
+        }
+    }
+    
+    func handleServerResponse(json: [String:Any]) {
+        if let status = json["status"] as? Bool {
+            print(status)
+            // Status is true or false
+            if status {
+                // Moving to next screen.
+                print("Verify code success")
+            } else {
+                var wrongCount = getNumberOfInvalidCode()
+                wrongCount += 1;
+                saveNumberOfInvalidCode(number: wrongCount)
+                
+                if (wrongCount >= maximumCodeSubmits) {
+                    let alertController = UIAlertController(title: "Error", message: "You are not allowed to use this application", preferredStyle: .alert)
+                    self.present(alertController, animated: true, completion: nil)
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: "You entered wrong code \(wrongCount)/\(maximumCodeSubmits) times, please try again", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        } else {
+            // Status is something else.
+            handleError(error: nil)
+        }
+    }
+    
+    // Unknown error <=> error = nil
+    func handleError(error: NSError?) {
+        if let error = error {
+            if (error.domain == NSURLErrorDomain) {
+                let alertController = UIAlertController(title: "Error", message: "Cannot verify code, please check your internet connection and try again", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                // TODO: Handle other cases
+            }
+        } else {
+            let alertController = UIAlertController(title: "Error", message: "Unknown error, please try again later", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+}
+
+extension CodeVerificationController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+        if (newText.count > maxCodeLength) {
+            return false
+        }
+        return true
+    }
+}
+
+extension CodeVerificationController {
+    
+    func getNumberOfInvalidCode() -> Int {
+        return UserDefaults.standard.integer(forKey: ud_timesWrong)
+    }
+    
+    func saveNumberOfInvalidCode(number: Int) {
+        UserDefaults.standard.set(number, forKey: ud_timesWrong)
+    }
 }

@@ -1,3 +1,4 @@
+
 //
 //  BorderedLabel.swift
 //  Cheese
@@ -17,5 +18,10 @@ class BorderedLabel: UILabel {
         // Drawing code
     }
     */
-
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.borderColor = UIColor.white.cgColor
+        layer.cornerRadius = 16
+        layer.borderWidth = 1.0
+    }
 }

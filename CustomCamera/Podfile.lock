@@ -1,12 +1,15 @@
 PODS:
+  - Alamofire (4.7.0)
   - KDCircularProgress (1.5.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - KDCircularProgress
 
 SPEC CHECKSUMS:
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
 
-PODFILE CHECKSUM: 7c019302713c3059ee96ee0361dde18649b84e6f
+PODFILE CHECKSUM: b195bb6bedb87a8a8b5ab098d1113112073bac93
 
 COCOAPODS: 1.4.0
