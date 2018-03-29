@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		047235689F9AA28BFC4F293A /* Pods_CustomCameraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F130B724E54EE66FFC599756 /* Pods_CustomCameraTests.framework */; };
+		7205FE47206D667300EE5B94 /* PersistentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205FE46206D667200EE5B94 /* PersistentService.swift */; };
 		721C4B27206A94D0004C54A7 /* CodeVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721C4B26206A94D0004C54A7 /* CodeVerificationController.swift */; };
 		721C4B29206A9D58004C54A7 /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721C4B28206A9D58004C54A7 /* BorderedLabel.swift */; };
 		795F27D8F4B8488141834275 /* Pods_Cheese.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 243C5C4B3143CBEA584BFA9B /* Pods_Cheese.framework */; };
@@ -58,6 +59,7 @@
 		243C5C4B3143CBEA584BFA9B /* Pods_Cheese.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheese.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		283EF981BE570648619660CD /* Pods-Cheese.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheese.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheese/Pods-Cheese.debug.xcconfig"; sourceTree = "<group>"; };
 		31674650F7A6795333DD5E3D /* Pods-CustomCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		7205FE46206D667200EE5B94 /* PersistentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentService.swift; sourceTree = "<group>"; };
 		721C4B26206A94D0004C54A7 /* CodeVerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerificationController.swift; sourceTree = "<group>"; };
 		721C4B28206A9D58004C54A7 /* BorderedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
 		724585D02A92BF6BEE81D8B9 /* Pods-CustomCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				9ABD98902000625A004692DA /* Extension */,
 				9ABD989A200076DD004692DA /* Utils.swift */,
+				7205FE46206D667200EE5B94 /* PersistentService.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				C779EB471DA625B800BFF796 /* HomeViewController.swift in Sources */,
 				9AEB562C200874DD00FD7F54 /* StringExtension.swift in Sources */,
 				9ABD98A72000AAD6004692DA /* SettingModel.swift in Sources */,
+				7205FE47206D667300EE5B94 /* PersistentService.swift in Sources */,
 				9ABD98A12000857A004692DA /* CardModel.swift in Sources */,
 				9A5600A320011FF9004A8B29 /* UIViewExtension.swift in Sources */,
 				9A80B7C41FFFD78B0065BB4E /* IconView.swift in Sources */,

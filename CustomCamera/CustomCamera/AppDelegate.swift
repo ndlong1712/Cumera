@@ -16,6 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let verificationPassed = PersistentService.shared.verificationStatus()
+        let navController = UINavigationController()
+        navController.setNavigationBarHidden(true, animated: false)
+        
+        if (verificationPassed) {
+            let homeVC = Utilities.getViewController(identifier: "HomeViewController")
+            navController.setViewControllers([homeVC], animated: false)
+        } else {
+            let verificationVC = Utilities.getViewController(identifier: "CodeVerificationController")
+            navController.setViewControllers([verificationVC], animated: false)
+        }
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

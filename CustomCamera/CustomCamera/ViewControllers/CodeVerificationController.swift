@@ -29,7 +29,7 @@ class CodeVerificationController: UIViewController {
     
     let maxCodeLength = 10
     let urlCheckCode = "https://smagicproductions-1.herokuapp.com/codes"
-    let ud_timesWrong = "times_wrong"
+    
     let maximumCodeSubmits = 5
     
     var hud: MBProgressHUD?
@@ -70,11 +70,13 @@ class CodeVerificationController: UIViewController {
     }
     
     @IBAction func goButtonDidClick(_ sender: UIButton) {
+        codeTextField.resignFirstResponder()
         
         let code = codeTextField.text ?? ""
         guard code.count == 10 else {
             return
         }
+        
         print("Code \(code)")
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 30 // 30 seconds.
@@ -108,11 +110,12 @@ class CodeVerificationController: UIViewController {
             if status {
                 // Moving to next screen.
                 print("Verify code success")
+                PersistentService.shared.setVerificationStatus(true)
                 moveToHomeScreen()
             } else {
-                var wrongCount = getNumberOfInvalidCode()
+                var wrongCount = PersistentService.shared.getNumberOfInvalidCode()
                 wrongCount += 1;
-                saveNumberOfInvalidCode(number: wrongCount)
+                PersistentService.shared.saveNumberOfInvalidCode(number: wrongCount)
                 
                 if (wrongCount >= maximumCodeSubmits) {
                     let alertController = UIAlertController(title: "Error", message: "You are not allowed to use this application", preferredStyle: .alert)
@@ -168,7 +171,7 @@ class CodeVerificationController: UIViewController {
                 hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             }
             hud?.mode = .indeterminate
-            hud?.label.text = "Please wait"
+            hud?.label.text = msg
         } else {
             hud?.hide(animated: true)
         }
@@ -182,16 +185,5 @@ extension CodeVerificationController: UITextFieldDelegate {
             return false
         }
         return true
-    }
-}
-
-extension CodeVerificationController {
-    
-    func getNumberOfInvalidCode() -> Int {
-        return UserDefaults.standard.integer(forKey: ud_timesWrong)
-    }
-    
-    func saveNumberOfInvalidCode(number: Int) {
-        UserDefaults.standard.set(number, forKey: ud_timesWrong)
     }
 }
