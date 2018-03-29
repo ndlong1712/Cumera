@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import MBProgressHUD
 
 class CodeVerificationController: UIViewController {
 
@@ -22,6 +23,7 @@ class CodeVerificationController: UIViewController {
     @IBOutlet weak var labelNo8: BorderedLabel!
     @IBOutlet weak var labelNo9: BorderedLabel!
     @IBOutlet weak var labelNo10: BorderedLabel!
+    @IBOutlet weak var labelsContainerView: UIView!
     
     var labelArray = [UILabel]()
     
@@ -29,6 +31,8 @@ class CodeVerificationController: UIViewController {
     let urlCheckCode = "https://smagicproductions-1.herokuapp.com/codes"
     let ud_timesWrong = "times_wrong"
     let maximumCodeSubmits = 5
+    
+    var hud: MBProgressHUD?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,12 @@ class CodeVerificationController: UIViewController {
         codeTextField.text = "";
         codeTextField.delegate = self
         codeTextField.addTarget(self, action: #selector(codeTextFieldDidChanged(textField:)), for: .editingChanged)
+        
+        let tapOnBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewDidTap(_:)))
+        view.addGestureRecognizer(tapOnBackgroundGesture)
+        
+        let tapOnLabelsContainerViewGesture = UITapGestureRecognizer(target: self, action: #selector(labelsContainerViewDidTap(_:)))
+        labelsContainerView.addGestureRecognizer(tapOnLabelsContainerViewGesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +70,7 @@ class CodeVerificationController: UIViewController {
     }
     
     @IBAction func goButtonDidClick(_ sender: UIButton) {
+        
         let code = codeTextField.text ?? ""
         guard code.count == 10 else {
             return
@@ -72,8 +83,11 @@ class CodeVerificationController: UIViewController {
             "code": code,
             "uuid": "ios_uuid"
         ]
-
+        
+        showLoading(message: "Please wait")
         manager.request(urlCheckCode, method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { [weak self] response in
+            self?.showLoading(message: nil)
+            
             if let error = response.error {
                 self?.handleError(error: error as NSError)
             } else {
@@ -94,6 +108,7 @@ class CodeVerificationController: UIViewController {
             if status {
                 // Moving to next screen.
                 print("Verify code success")
+                moveToHomeScreen()
             } else {
                 var wrongCount = getNumberOfInvalidCode()
                 wrongCount += 1;
@@ -131,6 +146,31 @@ class CodeVerificationController: UIViewController {
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func moveToHomeScreen() {
+        let homeVC = Utilities.getViewController(identifier: "HomeViewController")
+        self.navigationController?.setViewControllers([homeVC], animated: true)
+    }
+    
+    func labelsContainerViewDidTap(_ sender: UIView?) {
+        self.codeTextField.becomeFirstResponder()
+    }
+    
+    func backgroundViewDidTap(_ sender: UIView?) {
+        self.codeTextField.resignFirstResponder()
+    }
+    
+    func showLoading(message: String?) {
+        if let msg = message {
+            if hud == nil {
+                hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            }
+            hud?.mode = .indeterminate
+            hud?.label.text = "Please wait"
+        } else {
+            hud?.hide(animated: true)
         }
     }
 }
