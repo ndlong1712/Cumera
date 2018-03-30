@@ -14,7 +14,7 @@ import KDCircularProgress
 let CRMsgCaptureSuccess = "captureSuccess"
 let CRMsgCaptureError = "captureError"
 let CRTutorial = "tutorial"
-let youtubeURL = "https://www.youtube.com/channel/UCPG9BazSiVtfTGfvNFLxZmg"
+let youtubeURL = "https://www.youtube.com/watch?v=crX-3JBE2CQ&feature=youtu.be"
 
 enum CurrentOrientation: Int {
     case portrait = 0
