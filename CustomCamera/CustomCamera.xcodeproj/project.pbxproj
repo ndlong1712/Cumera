@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		047235689F9AA28BFC4F293A /* Pods_CustomCameraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F130B724E54EE66FFC599756 /* Pods_CustomCameraTests.framework */; };
+		5D7F7602292C889759F56C1F /* Pods_Cheese.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186338B6F6FE09BD8DDC03AE /* Pods_Cheese.framework */; };
 		9A3F3539200C55F200A088E9 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3F3538200C55F200A088E9 /* InfoViewController.swift */; };
 		9A5600A320011FF9004A8B29 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5600A220011FF9004A8B29 /* UIViewExtension.swift */; };
 		9A80B7C41FFFD78B0065BB4E /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80B7C31FFFD78B0065BB4E /* IconView.swift */; };
@@ -52,7 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		186338B6F6FE09BD8DDC03AE /* Pods_Cheese.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheese.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19C26B461B05D8C3E6834D97 /* Pods-Cheese.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheese.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheese/Pods-Cheese.debug.xcconfig"; sourceTree = "<group>"; };
 		31674650F7A6795333DD5E3D /* Pods-CustomCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		6749C2E6E4118450CD96BACD /* Pods-Cheese.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheese.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cheese/Pods-Cheese.release.xcconfig"; sourceTree = "<group>"; };
 		724585D02A92BF6BEE81D8B9 /* Pods-CustomCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera.release.xcconfig"; sourceTree = "<group>"; };
 		823613606127B4A5648B6984 /* Pods_CustomCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3F3538200C55F200A088E9 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F7C03B27CE690935DD2CEB /* Pods_CustomCamera.framework in Frameworks */,
+				5D7F7602292C889759F56C1F /* Pods_Cheese.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +131,7 @@
 				823613606127B4A5648B6984 /* Pods_CustomCamera.framework */,
 				F130B724E54EE66FFC599756 /* Pods_CustomCameraTests.framework */,
 				FC01F006AC451780E77DEB9C /* Pods_CustomCameraUITests.framework */,
+				186338B6F6FE09BD8DDC03AE /* Pods_Cheese.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -279,6 +285,8 @@
 				ABEF3DA9A172CF59BD7AA224 /* Pods-CustomCameraTests.release.xcconfig */,
 				E691EB11805D2357F88DF017 /* Pods-CustomCameraUITests.debug.xcconfig */,
 				BAC60665F0F33504DF549721 /* Pods-CustomCameraUITests.release.xcconfig */,
+				19C26B461B05D8C3E6834D97 /* Pods-Cheese.debug.xcconfig */,
+				6749C2E6E4118450CD96BACD /* Pods-Cheese.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -454,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cheese/Pods-Cheese-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		397CF9097B855C6DDE07099C /* [CP] Check Pods Manifest.lock */ = {
@@ -468,7 +476,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CustomCamera-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Cheese-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -514,7 +522,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cheese/Pods-Cheese-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -523,7 +531,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomCamera/Pods-CustomCamera-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cheese/Pods-Cheese-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CF511B6FE45BCB00574DAF84 /* [CP] Embed Pods Frameworks */ = {
@@ -755,7 +763,7 @@
 		};
 		C779EB6A1DA625B900BFF796 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31674650F7A6795333DD5E3D /* Pods-CustomCamera.debug.xcconfig */;
+			baseConfigurationReference = 19C26B461B05D8C3E6834D97 /* Pods-Cheese.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -774,7 +782,7 @@
 		};
 		C779EB6B1DA625B900BFF796 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 724585D02A92BF6BEE81D8B9 /* Pods-CustomCamera.release.xcconfig */;
+			baseConfigurationReference = 6749C2E6E4118450CD96BACD /* Pods-Cheese.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
