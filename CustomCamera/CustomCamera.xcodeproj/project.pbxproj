@@ -83,7 +83,7 @@
 		9AEB562B200874DD00FD7F54 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		ABEF3DA9A172CF59BD7AA224 /* Pods-CustomCameraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCameraTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCameraTests/Pods-CustomCameraTests.release.xcconfig"; sourceTree = "<group>"; };
 		BAC60665F0F33504DF549721 /* Pods-CustomCameraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomCameraUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomCameraUITests/Pods-CustomCameraUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C779EB411DA625B800BFF796 /* CustomCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CustomCamera.app; path = Cheese.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C779EB411DA625B800BFF796 /* Cheese.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheese.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C779EB441DA625B800BFF796 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C779EB461DA625B800BFF796 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C779EB491DA625B800BFF796 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		C779EB421DA625B800BFF796 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C779EB411DA625B800BFF796 /* CustomCamera.app */,
+				C779EB411DA625B800BFF796 /* Cheese.app */,
 				C779EB551DA625B900BFF796 /* CustomCameraTests.xctest */,
 				C779EB601DA625B900BFF796 /* CustomCameraUITests.xctest */,
 			);
@@ -320,7 +320,7 @@
 			);
 			name = Cheese;
 			productName = CustomCamera;
-			productReference = C779EB411DA625B800BFF796 /* CustomCamera.app */;
+			productReference = C779EB411DA625B800BFF796 /* Cheese.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C779EB541DA625B900BFF796 /* CustomCameraTests */ = {
@@ -788,7 +788,7 @@
 				INFOPLIST_FILE = CustomCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = globedr.app.GlobeDrQr;
+				PRODUCT_BUNDLE_IDENTIFIER = smagic.productions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c78d411e-0b99-472f-a442-4242f66ba742";
 				PROVISIONING_PROFILE_SPECIFIER = AllApp_Dev;
@@ -807,7 +807,7 @@
 				INFOPLIST_FILE = CustomCamera/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = globedr.app.GlobeDrQr;
+				PRODUCT_BUNDLE_IDENTIFIER = smagic.productions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c33cf525-6d55-4f04-93f2-b68ac9f3b882";
 				PROVISIONING_PROFILE_SPECIFIER = Cheese_AppStore;
