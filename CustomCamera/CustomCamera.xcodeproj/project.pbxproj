@@ -35,7 +35,6 @@
 		C779EB4F1DA625B800BFF796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C779EB4D1DA625B800BFF796 /* LaunchScreen.storyboard */; };
 		C779EB5A1DA625B900BFF796 /* CustomCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C779EB591DA625B900BFF796 /* CustomCameraTests.swift */; };
 		C779EB651DA625B900BFF796 /* CustomCameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C779EB641DA625B900BFF796 /* CustomCameraUITests.swift */; };
-		F4F7C03B27CE690935DD2CEB /* Pods_CustomCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823613606127B4A5648B6984 /* Pods_CustomCamera.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4F7C03B27CE690935DD2CEB /* Pods_CustomCamera.framework in Frameworks */,
 				795F27D8F4B8488141834275 /* Pods_Cheese.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,8 +807,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = smagic.productions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c33cf525-6d55-4f04-93f2-b68ac9f3b882";
-				PROVISIONING_PROFILE_SPECIFIER = Cheese_AppStore;
+				PROVISIONING_PROFILE = "0fc39543-661b-435e-83eb-b98457d2b9a8";
+				PROVISIONING_PROFILE_SPECIFIER = CheeseAppStore;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
