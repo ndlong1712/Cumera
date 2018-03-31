@@ -25,6 +25,9 @@ class CodeVerificationController: UIViewController {
     @IBOutlet weak var labelNo10: BorderedLabel!
     @IBOutlet weak var labelsContainerView: UIView!
     
+    @IBOutlet weak var enterCodeView: UIView!
+    @IBOutlet weak var warningLabel: UILabel!
+    
     var labelArray = [UILabel]()
     
     let maxCodeLength = 10
@@ -40,16 +43,27 @@ class CodeVerificationController: UIViewController {
         // Do any additional setup after loading the view.
         labelArray = [labelNo1, labelNo2, labelNo3, labelNo4, labelNo5, labelNo6, labelNo7, labelNo8, labelNo9, labelNo10]
         
-        codeTextField.becomeFirstResponder()
-        codeTextField.text = "";
-        codeTextField.delegate = self
-        codeTextField.addTarget(self, action: #selector(codeTextFieldDidChanged(textField:)), for: .editingChanged)
-        
-        let tapOnBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewDidTap(_:)))
-        view.addGestureRecognizer(tapOnBackgroundGesture)
-        
-        let tapOnLabelsContainerViewGesture = UITapGestureRecognizer(target: self, action: #selector(labelsContainerViewDidTap(_:)))
-        labelsContainerView.addGestureRecognizer(tapOnLabelsContainerViewGesture)
+        let wrongCount = PersistentService.shared.getNumberOfInvalidCode()
+        if (wrongCount == maximumCodeSubmits) {
+            warningLabel.isHidden = false
+            enterCodeView.isHidden = true
+            
+            warningLabel.text = "You have entered wrong code 5/5 times, you're not allowed to use this application"
+        } else {
+            warningLabel.isHidden = true
+            enterCodeView.isHidden = false
+            
+            codeTextField.becomeFirstResponder()
+            codeTextField.text = "";
+            codeTextField.delegate = self
+            codeTextField.addTarget(self, action: #selector(codeTextFieldDidChanged(textField:)), for: .editingChanged)
+            
+            let tapOnBackgroundGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewDidTap(_:)))
+            view.addGestureRecognizer(tapOnBackgroundGesture)
+            
+            let tapOnLabelsContainerViewGesture = UITapGestureRecognizer(target: self, action: #selector(labelsContainerViewDidTap(_:)))
+            labelsContainerView.addGestureRecognizer(tapOnLabelsContainerViewGesture)
+        }
     }
 
     override func didReceiveMemoryWarning() {
