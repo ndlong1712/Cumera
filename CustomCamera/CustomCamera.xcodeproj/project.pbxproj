@@ -32,7 +32,6 @@
 		C779EB4F1DA625B800BFF796 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C779EB4D1DA625B800BFF796 /* LaunchScreen.storyboard */; };
 		C779EB5A1DA625B900BFF796 /* CustomCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C779EB591DA625B900BFF796 /* CustomCameraTests.swift */; };
 		C779EB651DA625B900BFF796 /* CustomCameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C779EB641DA625B900BFF796 /* CustomCameraUITests.swift */; };
-		F4F7C03B27CE690935DD2CEB /* Pods_CustomCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823613606127B4A5648B6984 /* Pods_CustomCamera.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,7 +100,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4F7C03B27CE690935DD2CEB /* Pods_CustomCamera.framework in Frameworks */,
 				5D7F7602292C889759F56C1F /* Pods_Cheese.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,7 +366,7 @@
 				TargetAttributes = {
 					C779EB401DA625B800BFF796 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = LACAERZG26;
+						DevelopmentTeam = B5KML4S479;
 						ProvisioningStyle = Manual;
 					};
 					C779EB541DA625B900BFF796 = {
